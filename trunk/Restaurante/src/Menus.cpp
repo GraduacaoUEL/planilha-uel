@@ -33,6 +33,11 @@ void Menus::principal(Financeiro caixa, Financeiro banco)
     case 2:
             menuFinanceiro(caixa);
             break;
+
+    case 3:
+            menuFinanceiro(banco);
+            break;
+
     }
 
 }
@@ -51,7 +56,7 @@ void Menus::menuFinanceiro(Financeiro f)
 		printf("( 4 ) Agendar contas a receber(fiado)\n");
 		printf("( 5 ) Historico de Entradas\n");
 		printf("( 6 ) Historico de Saidas\n");
-		printf("( 7 ) Sair\n");
+		printf("( 7 ) Voltar\n");
 
 		scanf("%d", &op);
 	}while(op < 1 || op > 7);
@@ -67,7 +72,7 @@ void Menus::menuFinanceiro(Financeiro f)
 		break;
 
 	case 7:
-		f.saida();
+		f.menu->principal(f,f); //Isso gera um pequeno bug, tem que arrumar
 		break;
 
 	}

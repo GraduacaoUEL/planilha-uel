@@ -15,6 +15,7 @@ void Financeiro::entrada(Financeiro f)
 	float  ent;
 
 	do{
+		system("clear");
 		printf("Escolha o tipo de entrada\n\n\n");
 		printf("( 1 )Deposito\n");
 		printf("( 2 )Vendas ao cliente\n");
