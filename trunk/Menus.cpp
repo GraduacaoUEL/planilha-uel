@@ -26,7 +26,7 @@ void Menus::principal()
     switch(op)
     {
     case 1:
-
+            menuCliente();
             break;
 
     case 2:
@@ -36,6 +36,34 @@ void Menus::principal()
     }
 
 }
+
+void Menus::menuCliente()
+{
+    	ClienteFuncoes c;
+	int opcao;
+	do{
+		system("cls");
+		printf("\t[1] Para inserir cliente\n");
+		printf("\t[2] Para remover um cliente\n");
+		printf("\t[3] Para inserir um pedido em um cliente\n");
+		printf("\t[4] Para mostrar todos os clientes\n");
+		printf("\t[5] Para sair\n");
+		
+	
+		fflush(stdin);
+		scanf("%d",&opcao);
+		
+		if(opcao == 1)
+			c.inserirCliente();
+		if(opcao == 3)
+			c.removerCliente();
+		if(opcao == 4)
+			c.mostrarClientes();
+	}while( opcao != 5);
+	return;
+     
+}
+
 void Menus::menuFinanceiro()
 {
 

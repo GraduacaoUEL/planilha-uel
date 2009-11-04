@@ -11,9 +11,10 @@
 #include "Cabecalhos.h"
 
 struct Cliente{
-
+  
+   char cpf[20];
    char nome[100];
-   char cfp[20];
+   
    char telefoneResidencial[20];
    char telefoneCelular[20];
    char cidade[100];
@@ -23,6 +24,9 @@ struct Cliente{
    char numero[100];
    char nascimento[10];
    char bairro[100];
+   char pedido[100][100];
+   char data[100];
+	
 };
 
 
