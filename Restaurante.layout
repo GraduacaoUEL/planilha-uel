@@ -45,7 +45,7 @@ CursorCol=1
 CursorRow=18
 TopLine=1
 LeftChar=1
-Open=1
+Open=0
 Top=0
 [Editors]
 Order=5,7,8,0,2,1,6
@@ -62,5 +62,5 @@ Open=1
 Top=0
 CursorCol=1
 CursorRow=191
-TopLine=161
+TopLine=167
 LeftChar=1
