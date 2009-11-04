@@ -112,7 +112,7 @@ int ClienteFuncoes::achaInsere(char clienteParaAchar[100]){
 	 }
 	
    local = busca(c,clienteParaAchar,0,0);
-	printf("local%d",local);
+	
 	int contador;
 	contador = quantidadeDeClientes;
 	
@@ -133,17 +133,14 @@ int ClienteFuncoes::achaInsere(char clienteParaAchar[100]){
 int ClienteFuncoes::busca(Cliente *c,char clienteParaAchar[100],int inicio,int posicao){
 	
 
-	while( inicio < quantidadeDeClientes && (clienteParaAchar[posicao] <= c[inicio].nome[posicao]  ))
-		inicio++;
-	if(clienteParaAchar[posicao] < c[inicio].nome[posicao])
+	if(quantidadeDeClientes !=0 )
+		while( c[inicio].nome[posicao] < clienteParaAchar[posicao] && inicio<quantidadeDeClientes )
 		{
-			if(quantidadeDeClientes ==0  )
-				return inicio;
-			else 
-				return inicio;
-	}else if (quantidadeDeClientes != inicio)
-		return busca(c,clienteParaAchar,inicio,posicao+1);	
-	else 
+			inicio++;
+		}
+	if(c[inicio].nome[posicao] == clienteParaAchar[posicao])
+			return busca(c,clienteParaAchar,inicio,posicao+1);
+	
 	return inicio;
 }		
 		
@@ -255,15 +252,24 @@ void ClienteFuncoes::menu(){
 	
 		fflush(stdin);
 		scanf("%d",&opcao);
+		switch(opcao){
+			
 		
-		if(opcao == 1)
-			c.inserirCliente();
-		if(opcao == 2)
-			c.removerCliente();
-		if(opcao == 3)
-			c.pedidos();
-		if(opcao == 4)
+		case 1:
+				c.inserirCliente();
+				break;
+				
+		case 2:
+				system("pause");
+				c.removerCliente();
+				break;
+		case 3:
+				c.pedidos();
+				break;
+		case 4:
 			c.mostrarClientes();
+			break;
+		}
 	}while( opcao != 5);
 	return;
 	
