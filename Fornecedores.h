@@ -12,14 +12,12 @@
 
 typedef struct Fornecedores
 {
-	int id;
-
-	char nome[101];
-	int cnpj;
-	char endereco[101];
-	char cidade[51];
-	char estado[3];
-	int telefone[2];
+	char nome[100];
+	char cnpj[20];
+	char endereco[100];
+	char cidade[50];
+	char estado[5];
+	char telefone[20];
 
 	Data compra, previsao, entrega;
 	bool comprou, entregue;
