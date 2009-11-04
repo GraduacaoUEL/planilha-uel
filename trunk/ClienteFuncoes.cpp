@@ -154,7 +154,7 @@ void ClienteFuncoes::removerCliente(){
      
 	printf("Digite o nome do cliente que sera removido\t");
    fflush(stdin);
-	gets(clienteParaRemover);
+//	gets(clienteParaRemover);
    
 	localParaRemover = achaCliente(clienteParaRemover);
    printf("Local para remover  => %d \n",localParaRemover);
@@ -237,9 +237,10 @@ ClienteFuncoes::~ClienteFuncoes(){
 
 
 
-void ClienteFuncoes::menu(){
+/*void ClienteFuncoes::menu(){
+	int op;
 	ClienteFuncoes c;
-	int opcao;
+
 	do{
 		system("cls");
 		printf("\t[1] Para inserir cliente\n");
@@ -251,8 +252,10 @@ void ClienteFuncoes::menu(){
 		fseek(arq,0,0);
 	
 		fflush(stdin);
-		scanf("%d",&opcao);
-		switch(opcao){
+		scanf("%d",&op);
+		
+			c.removerCliente();
+		switch(op){
 			
 		
 		case 1:
@@ -260,7 +263,6 @@ void ClienteFuncoes::menu(){
 				break;
 				
 		case 2:
-				system("pause");
 				c.removerCliente();
 				break;
 		case 3:
@@ -270,7 +272,8 @@ void ClienteFuncoes::menu(){
 			c.mostrarClientes();
 			break;
 		}
-	}while( opcao != 5);
+	}while( op != 5);
 	return;
 	
 }	
+*/
