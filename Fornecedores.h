@@ -1,5 +1,5 @@
  /*
- * Financeiro.h
+ * Fornecedores.h
  *
  *  Created on: 01/11/2009
  *      Author: Hayato
@@ -9,6 +9,7 @@
 
 #include "Cabecalhos.h"
 #include "Data.h"
+#include "Data.cpp"
 
 typedef struct Fornecedores
 {

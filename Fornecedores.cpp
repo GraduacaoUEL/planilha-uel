@@ -89,11 +89,3 @@ void Fornecedores::mostreStatus()
 		printf("Nada foi comprado deste fornecedor.\n");
 
 }
-
-int main (void) {
-	Fornecedores teste;
-	teste.graveFornecedor();
-	teste.leiaFornecedor();
-	system("pause");
-}
-
