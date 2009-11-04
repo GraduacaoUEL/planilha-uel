@@ -15,13 +15,14 @@ FinanceiroFuncoes::FinanceiroFuncoes()
 FinanceiroFuncoes::~FinanceiroFuncoes()
 {
 	fclose(fin);
+	fclose(sld);
 }
 
 void FinanceiroFuncoes::entrada()
 {
 	int op, sn;
 	char descricao[30];
-    struct Financeiro f;
+    struct Financeiro f, g;
     
  
 	do{
@@ -55,17 +56,36 @@ void FinanceiroFuncoes::entrada()
 
 		if(sn == 1)
 		{
-
+              
+            if((sld = fopen("saldo.fin", "rb")) == NULL)
+            {
+                printf("\nNom abristes\n");
+                g.saldo = 0.0;  
+            }
+            else
+                fread(&g, sizeof(Financeiro), 1, sld);    
+  
 			if((fin = fopen("fin_in.fin", "ab")) == NULL)
 			{
-				printf("Erro ao abrir o arquivo financeiro.fin\n");
+				printf("Erro ao abrir o arquivo fin_in.fin\n");
+				exit(1);
+			}
+
+			if((fin = fopen("saldo.fin", "wb")) == NULL)
+			{
+				printf("Erro ao abrir o arquivo saldo.fin\n");
 				exit(1);
 			}
 
 
+
 			fwrite(&f, sizeof(struct Financeiro), 1, fin);
-			printf("Deposito realizado com sucesso.\n\n");
+			g.saldo += f.entradav;
+			fwrite(&g, sizeof(struct Financeiro), 1, sld);
+			printf("Deposito realizado com sucesso. O seu novo saldo e de: %f\n\n", f.saldo);
 			fflush(fin);
+			getchar();
+			getchar();
 			entrada();
 
 		}

@@ -2,7 +2,7 @@
  * Financeiro.h
  *
  *  Created on: 01/11/2009
- *      Author: helioalb
+ *      Author: Helio
  */
 #ifndef FINANCEIRO_H_
 #define FINANCEIRO_H_
@@ -10,7 +10,7 @@
 #include "Cabecalhos.h"
 #include "Menus.h"
 #include "Cliente.h"
-
+#include "Fornecedores.h"
 struct Financeiro
 {
 	float saldo;
@@ -19,11 +19,12 @@ struct Financeiro
 	char descricao[30];
 	char nome[30];
 	struct Cliente c;
+	struct Fornecedores;
 };
 
 struct FinanceiroFuncoes
 {
-	FILE *fin;
+	FILE *fin, *sld;
 	struct Menus *menu;
 
 
