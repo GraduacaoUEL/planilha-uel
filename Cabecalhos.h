@@ -13,5 +13,6 @@
 #include <string.h>
 #include "Menus.h"
 #include "Financeiro.h"
+#include "ClienteFuncoes.h"
 
 #endif /* CABECALHOS_H_ */
