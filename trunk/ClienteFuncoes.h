@@ -4,7 +4,6 @@
  *  Created on: 03/11/2009
  *      Author: Vinicius
  */
-
 #ifndef CLIENTEFUNCOES_H_
 #define CLIENTEFUNCOES_H_
 

@@ -9,6 +9,7 @@
 
 #include "Cabecalhos.h"
 #include "Data.h"
+
 typedef struct Fornecedores
 {
 	int id;

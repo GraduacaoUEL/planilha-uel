@@ -4,6 +4,7 @@ void Fornecedores::graveFornecedor() {
 	char buffer[31];
 	Fornecedores temp;
 	int gravar;
+	
 
 	printf("CADASTRO DE FORNECEDORES\n");
 

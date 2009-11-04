@@ -38,4 +38,5 @@ struct FinanceiroFuncoes
 	//void relatorioAReceber();
 };
 
+
 #endif /* FINANCEIRO_H_ */

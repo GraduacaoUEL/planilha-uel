@@ -119,6 +119,7 @@ void FinanceiroFuncoes::historicoEntrada()
         }
 	}
 
+
     fseek( fin, 0, SEEK_SET );
     fflush(fin);
     fflush(stdin);

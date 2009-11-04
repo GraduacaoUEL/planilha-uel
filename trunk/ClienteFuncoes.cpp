@@ -141,7 +141,7 @@ void ClienteFuncoes::mostrarClientes(){
 
     fseek( arq, 0, SEEK_SET );
 	 fflush(arq);
-	 fflush(stdin);
+	fflush(stdin);
     fflush(stdout);
 	 Cliente c;
     
