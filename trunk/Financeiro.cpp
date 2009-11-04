@@ -43,7 +43,7 @@ void FinanceiroFuncoes::entrada()
         fflush(stdin);
         scanf("%f", &f.entradav);
 
-		printf("Faça uma breve descrição da operação:\n");
+		printf("Faca uma breve descricao da operacao:\n");
         fflush(stdin);
         gets(f.descricao);
 
@@ -56,7 +56,7 @@ void FinanceiroFuncoes::entrada()
 		if(sn == 1)
 		{
 
-			if((fin = fopen("financeiro.fin", "ab")) == NULL)
+			if((fin = fopen("fin_in.fin", "ab")) == NULL)
 			{
 				printf("Erro ao abrir o arquivo financeiro.fin\n");
 				exit(1);
@@ -108,11 +108,11 @@ void FinanceiroFuncoes::entrada()
 void FinanceiroFuncoes::historicoEntrada()
 {
     Financeiro f;
-	if((fin = fopen("financeiro.fin", "rb")) == NULL)
+	if((fin = fopen("fin_in.fin", "rb")) == NULL)
 	{
 		printf("N�o existem registros\n");
 
-        if((fin = fopen("financeiro.fin", "wb")) == NULL)
+        if((fin = fopen("fin_in.fin", "wb")) == NULL)
         {
 		    printf("Erro ao criar arquivo\n");
 		    exit(1);
@@ -136,4 +136,85 @@ void FinanceiroFuncoes::historicoEntrada()
 	}
     getchar(); 
     menu->menuFinanceiro();
+}
+
+void FinanceiroFuncoes::saida()
+{
+	int sn;
+	char descricao[30];
+    struct Financeiro f;
+    
+		system("cls");
+
+		printf("Digite o valor da saida:  \n");
+        fflush(stdin);
+        scanf("%f", &f.saidav);
+
+		printf("Faca uma breve descricao da operacao:\n");
+        fflush(stdin);
+        gets(f.descricao);
+
+
+		system("cls");
+
+		printf("Confirma a saida [1 - SIM/ 2 - NAO]:\n\n");
+		scanf("%d", &sn);
+
+		if(sn == 1)
+		{
+
+			if((fin = fopen("fin_out.fin", "ab")) == NULL)
+			{
+				printf("Erro ao abrir o arquivo financeiro.fin\n");
+				exit(1);
+			}
+
+
+			fwrite(&f, sizeof(struct Financeiro), 1, fin);
+			printf("Saida realizada com sucesso.\n\n");
+			fflush(fin);
+			getchar();
+			getchar();
+			menu->menuFinanceiro();
+
+		}
+		else
+		{
+			menu->menuFinanceiro();
+		}
+
+}
+
+void FinanceiroFuncoes::historicoSaida()
+{
+    Financeiro f;
+	if((fin = fopen("fin_out.fin", "rb")) == NULL)
+	{
+		printf("N�o existem registros\n");
+
+        if((fin = fopen("fin_out.fin", "wb")) == NULL)
+        {
+		    printf("Erro ao criar arquivo\n");
+		    exit(1);
+        }
+	}
+
+
+    fseek( fin, 0, SEEK_SET );
+    fflush(fin);
+    fflush(stdin);
+    fflush(stdout);
+    
+    system("cls");
+    
+    printf("\t\tSaida\t\tDescricao\t\t");
+    
+    while ((fread(&f, sizeof(Financeiro), 1, fin))==1)
+    {
+	 	printf("\n\t\t%f\t\t ", f.saidav);
+	 	printf("%s\n", f.descricao);	
+	}
+    getchar(); 
+    menu->menuFinanceiro();
+     
 }
