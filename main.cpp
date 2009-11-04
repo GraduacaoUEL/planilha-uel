@@ -6,7 +6,7 @@
 // Description :
 //============================================================================
 #include "Cabecalhos.h"
-
+#include "Financeiro.h"
 
 struct Financeiro;
 struct Menus;

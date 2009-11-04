@@ -16,6 +16,7 @@ bool Data::verificaAnoBissexto()
 	// caso não for nem divisivel por 4 nem por 100, então é ano normal
 	else
 		return false;
+		
 }
 
 int Data::forneceDiasMes ()

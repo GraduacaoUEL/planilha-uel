@@ -16,5 +16,4 @@
 #include <cstdlib>
 #include <cstring>
 
-
 #endif /* CABECALHOS_H_ */

@@ -4,7 +4,6 @@
  *  Created on: 03/11/2009
  *      Author: helioalb
  */
-
 #ifndef CLIENTE_H_
 #define CLIENTE_H_
 
