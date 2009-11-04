@@ -110,12 +110,17 @@ void Menus::menuFinanceiro()
 		break;
 
 	case 2:
-
+        f.saida();
 		break;
 
 	case 5:
 		f.historicoEntrada();
 		break;
+		
+	case 6:
+		f.historicoSaida();
+		break;
+		
 
 	case 7:
 		f.menu->principal();

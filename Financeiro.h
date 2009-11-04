@@ -15,6 +15,7 @@ struct Financeiro
 {
 	float saldo;
 	float entradav;
+	float saidav;
 	char descricao[30];
 	char nome[30];
 	struct Cliente c;
@@ -33,7 +34,7 @@ struct FinanceiroFuncoes
 	//void contasAPagar();
 	//void contasAReceber();
 	void historicoEntrada();
-	//void historicoSaida();
+	void historicoSaida();
 	//void relatorioAPagar();
 	//void relatorioAReceber();
 };
