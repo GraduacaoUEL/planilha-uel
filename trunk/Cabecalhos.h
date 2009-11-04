@@ -8,12 +8,9 @@
 #ifndef CABECALHOS_H_
 #define CABECALHOS_H_
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <ctime>
 
 #endif /* CABECALHOS_H_ */
