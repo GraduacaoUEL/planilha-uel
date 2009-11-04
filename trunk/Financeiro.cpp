@@ -20,8 +20,10 @@ FinanceiroFuncoes::~FinanceiroFuncoes()
 void FinanceiroFuncoes::entrada()
 {
 	int op, sn;
-	struct Financeiro f;
-
+	char descricao[30];
+    struct Financeiro f;
+    
+ 
 	do{
 		system("cls");
 		printf("Escolha o tipo de entrada\n\n\n");
@@ -38,11 +40,13 @@ void FinanceiroFuncoes::entrada()
 		system("cls");
 
 		printf("Digite o valor do deposito:  \n");
-        
+        fflush(stdin);
         scanf("%f", &f.entradav);
 
 		printf("Faça uma breve descrição da operação:\n");
-		scanf("%s", f.descricao);
+        fflush(stdin);
+        gets(f.descricao);
+
 
 		system("cls");
 
@@ -106,17 +110,29 @@ void FinanceiroFuncoes::historicoEntrada()
     Financeiro f;
 	if((fin = fopen("financeiro.fin", "rb")) == NULL)
 	{
-		printf("Erro ao abrir o arquivo financeiro.fin\n");
-		exit(1);
+		printf("N�o existem registros\n");
+
+        if((fin = fopen("financeiro.fin", "wb")) == NULL)
+        {
+		    printf("Erro ao criar arquivo\n");
+		    exit(1);
+        }
 	}
 
-	rewind(fin);
-/*	for(int i = 0; i != feof(fin); i++)
-	{
-		fread(&f, sizeof(struct Financeiro), 1, fin);
-		printf("%f\t", f[1].entradav);
-		printf("%s\n", f[1].descricao);
-
+    fseek( fin, 0, SEEK_SET );
+    fflush(fin);
+    fflush(stdin);
+    fflush(stdout);
+    
+    system("cls");
+    
+    printf("\t\tDeposito\t\tDescricao\t\t");
+    
+    while ((fread(&f, sizeof(Financeiro), 1, fin))==1)
+    {
+	 	printf("\n\t\t%f\t\t ", f.entradav);
+	 	printf("%s\n", f.descricao);	
 	}
-*/
+    getchar(); 
+    menu->menuFinanceiro();
 }
