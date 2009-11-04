@@ -11,8 +11,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Menus.h"
-#include "Financeiro.h"
-#include "ClienteFuncoes.h"
+#include <time.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+
 
 #endif /* CABECALHOS_H_ */

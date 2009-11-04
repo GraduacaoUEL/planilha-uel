@@ -24,7 +24,7 @@ struct FinanceiroFuncoes
 {
 	FILE *fin;
 	struct Menus *menu;
-	struct Financeiro *f;
+
 
 	FinanceiroFuncoes();
 	~FinanceiroFuncoes();

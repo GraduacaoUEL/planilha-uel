@@ -9,6 +9,7 @@
 #define CLIENTEFUNCOES_H_
 
 #include "Cabecalhos.h"
+#include "Cliente.h"
 
 struct 	ClienteFuncoes{
 	FILE * arq;	
