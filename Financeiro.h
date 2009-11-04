@@ -29,7 +29,7 @@ struct FinanceiroFuncoes
 	FinanceiroFuncoes();
 	~FinanceiroFuncoes();
 	void entrada();
-	//void saida();
+	void saida();
 	//void contasAPagar();
 	//void contasAReceber();
 	void historicoEntrada();

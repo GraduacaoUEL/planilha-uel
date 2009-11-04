@@ -40,6 +40,16 @@ void Menus::principal()
             menuFornecedores();
             break;
 
+    case 4:
+//Função do Jorge
+            break;
+
+
+    case 5:
+            exit(1);
+            break;
+
+
     }
 
 }
