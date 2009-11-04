@@ -78,7 +78,7 @@ void Menus::menuCliente()
 		if(opcao == 4)
 			c.mostrarClientes();
 	}while( opcao != 5);
-	return;
+	c.menu->principal();
      
 }
 
