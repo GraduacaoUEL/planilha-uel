@@ -2,7 +2,7 @@
  * Financeiro.h
  *
  *  Created on: 01/11/2009
- *      Author: Hayto
+ *      Author: Hayato
  */
 #ifndef DATA_H_
 #define DATA_H_

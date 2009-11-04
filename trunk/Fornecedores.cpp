@@ -1,43 +1,34 @@
 #include "Fornecedores.h"
+
 // usar construtor/destrutor aqui preferencialmente
 void Fornecedores::graveFornecedor() {
 	char buffer[31];
 	Fornecedores temp;
 	int gravar;
-	
 
 	printf("CADASTRO DE FORNECEDORES\n");
 
 	printf("Entre o nome do fornecedor > ");
-//	scanf("%[^\n]", temp.nome);
 	fgets(temp.nome, sizeof(temp.nome), stdin);
 
-	printf("Entre o CNPJ (somente numeros) > ");
-	fgets(buffer, sizeof(buffer), stdin);
-	temp.cnpj = atoi(buffer);
+	printf("Entre o CNPJ (com pontos, barras e hifens) > ");
+	fgets(temp.cnpj, sizeof(temp.cnpj), stdin);
 
 	printf("Entre o endereco > ");
-//	scanf("%[^\n]", temp.endereco);
 	fgets(temp.endereco, sizeof(temp.endereco), stdin);
 
 	printf("Entre a cidade > ");
-//	scanf("%[^\n]", temp.cidade);
 	fgets(temp.cidade, sizeof(temp.cidade), stdin);
 
 	printf("Entre o estado (2 letras) > ");
-//	scanf("%[^\n]", temp.estado);
 	fgets(temp.estado, sizeof(temp.estado), stdin);
 
-	printf("Entre o DDD > ");
-	fgets(buffer, sizeof(buffer), stdin);
-	temp.telefone[0] = atoi(buffer);
-	
 	printf("Entre o telefone > ");
-	fgets(buffer, sizeof(buffer), stdin);
-	temp.telefone[1] = atoi(buffer);
+	fgets(temp.telefone, sizeof(temp.telefone), stdin);
 
-	printf("\nConfirme os dados\n");
+	printf("\nCONFIRME OS DADOS\n");
 	temp.leiaFornecedor();
+
 	printf("\n\nEstao corretos? (1)Sim (2)Nao > ");
 	fgets(buffer, 2, stdin);
 	gravar = atoi(buffer);
@@ -49,12 +40,11 @@ void Fornecedores::graveFornecedor() {
 	else if (gravar == 1)
 	{
 		strcpy(nome, temp.nome);
-		cnpj = temp.cnpj;
+		strcpy(cnpj, temp.cnpj);
 		strcpy(endereco, temp.endereco);
 		strcpy(cidade, temp.cidade);
 		strcpy(estado, temp.estado);
-		telefone[0] = temp.telefone[0];
-		telefone[1] = temp.telefone[1];
+		strcpy(telefone, temp.telefone);
 		printf("Cadastrado com sucesso!\nCaso queira atualizar os dados, utilize a opcao disponivel no menu.\n");
 	}
 }
@@ -62,11 +52,11 @@ void Fornecedores::graveFornecedor() {
 void Fornecedores::leiaFornecedor()
 {
 	printf("Razao Social: %s", nome);
-	printf("CNPJ: %d\n", cnpj);
+	printf("CNPJ: %s", cnpj);
 	printf("Endereco: %s", endereco);
 	printf("Cidade: %s", cidade);
-	printf("Estado: %s\n", estado);
-	printf("Telefone: (%d) %d\n", telefone[0], telefone[1]);
+	printf("Estado: %s", estado);
+	printf("Telefone: %s", telefone);
 }
 
 void Fornecedores::atualizaFornecedor () {
@@ -99,3 +89,11 @@ void Fornecedores::mostreStatus()
 		printf("Nada foi comprado deste fornecedor.\n");
 
 }
+
+int main (void) {
+	Fornecedores teste;
+	teste.graveFornecedor();
+	teste.leiaFornecedor();
+	system("pause");
+}
+
