@@ -9,7 +9,6 @@
 
 #include "Cabecalhos.h"
 #include "Data.h"
-#include "Data.cpp"
 
 typedef struct Fornecedores
 {
