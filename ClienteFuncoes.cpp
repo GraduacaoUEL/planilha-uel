@@ -13,7 +13,7 @@ void ClienteFuncoes::inserirCliente(){
    printf("Nome do cliente\t");
    gets(c.nome);
    
-   fflush(stdin);
+ /*  fflush(stdin);
    printf("CPF\t");
    gets(c.cpf);
    
@@ -49,73 +49,127 @@ void ClienteFuncoes::inserirCliente(){
 	printf("\nCEP\t");
    gets(c.cep);
    
+  */ 
    
+	localParaInserir = achaInsere(c.nome );
    
-   localParaInserir = achaCliente(c.nome );
-   
-	printf("Local para inserir%d",localParaInserir);
-   fwrite(&c,(quantidadeDeClientes+1)*sizeof(Cliente),1,arq);
+		
+	
+   fseek(arq,(localParaInserir)*sizeof(Cliente),0);
+	fwrite(&c,sizeof(Cliente),1,arq);
+	
 	fflush(stdin);
    printf("\n\nCliente inserido\n");
    getchar();
    
 	quantidadeDeClientes++;    
-	//fflush(arq);
+	fflush(arq);
 	
 	
 	
 }
 
 int ClienteFuncoes::achaCliente(char clienteParaAchar[100]){
-   Cliente *c;
-	
+   Cliente *c,cli;
+	int local;
 	c = new Cliente[quantidadeDeClientes];
 	int i;
-	i= 0;
-
-	fseek(arq,0,0);
-	while (fread(&c[i], sizeof(Cliente),1,arq)== 1)
-   {
-		printf("NOME %s e quantidade %d",c[i].nome,i);
-   	i++;
-   }
-   for(int k =0 ; k< quantidadeDeClientes; k++)
-   	if( clienteParaAchar[0] > c[k].nome[0])
-			 
-			 
-   delete(c);
-   
+	i = 0;
 	
-   
-   
-   
-}         
+	fseek( arq, 0, SEEK_SET );
+	fflush(arq);
+	fflush(stdin);
+   fflush(stdout);
+	
+ 
+    while ((fread(&c[i],sizeof(Cliente),1,arq))==1) 	
+	 {
+		i++;
+	 }
+	
+   local = busca(c,clienteParaAchar,0,0);
+	
+	delete(c);
+	return local;
+}
+
+int ClienteFuncoes::achaInsere(char clienteParaAchar[100]){
+   Cliente *c,cli;
+	int local;
+	c = new Cliente[quantidadeDeClientes+2];
+	int i;
+	i = 0;
+	
+	fseek( arq, 0, 0 );
+	fflush(arq);
+	fflush(stdin);
+   fflush(stdout);
+	
+ 
+    while ((fread(&c[i],sizeof(Cliente),1,arq))==1) 	
+	 {
+		i++;
+	 }
+	
+   local = busca(c,clienteParaAchar,0,0);
+	printf("local%d",local);
+	int contador;
+	contador = quantidadeDeClientes;
+	
+	while(contador > local)
+		{
+			c[contador] = c[contador-1];
+			contador--;
+	}
+	
+	fseek(arq,local*sizeof(Cliente),0);
+	for(int i = local; i <= quantidadeDeClientes ;i++)
+		fwrite(&c[i],sizeof(Cliente),1,arq);
+	
+	
+	delete(c);
+	return local;
+} 
+int ClienteFuncoes::busca(Cliente *c,char clienteParaAchar[100],int inicio,int posicao){
+	
+
+	while( inicio < quantidadeDeClientes && (clienteParaAchar[posicao] <= c[inicio].nome[posicao]  ))
+		inicio++;
+	if(clienteParaAchar[posicao] < c[inicio].nome[posicao])
+		{
+			if(quantidadeDeClientes ==0  )
+				return inicio;
+			else 
+				return inicio;
+	}else if (quantidadeDeClientes != inicio)
+		return busca(c,clienteParaAchar,inicio,posicao+1);	
+	else 
+	return inicio;
+}		
+		
+	
+        
 void ClienteFuncoes::removerCliente(){
 	Cliente c; 
 	int localParaRemover;
-   char opcao,clienteParaRemover;
+   char opcao,clienteParaRemover[100];
    
      
-	printf("Digite o nome do cliente que sera removido");
-   scanf("%s",clienteParaRemover);
-   localParaRemover = achaCliente(&clienteParaRemover);
+	printf("Digite o nome do cliente que sera removido\t");
+   fflush(stdin);
+	gets(clienteParaRemover);
    
-   fseek(arq, localParaRemover * sizeof(Cliente), 0);
-	fread(&c, sizeof(struct Cliente), 1, arq);
+	localParaRemover = achaCliente(clienteParaRemover);
+   printf("Local para remover  => %d \n",localParaRemover);
+   fseek(arq, (localParaRemover) * sizeof(Cliente), 0);
+	fread(&c, sizeof( Cliente), 1, arq);
 
 	printf("Nome do cliente => %s  ",c.nome);
    printf("CPF do Cliente => %s  ",c.cpf);
-  	printf("Tem certeza que deseja excluir ? [s]im [n]");
-  
-   do{
-  		fflush(stdin);
-   	scanf("%c",&opcao);
-	}while( opcao !='s' || opcao != 'n');
-  
- 	 c.cpf[0] = '-1';
- 	 
- 	 fwrite(&c,sizeof(Cliente),1,arq);
-}	 
+  	printf("Tem certeza que deseja excluir ? \n[s]im \tn[n]ao");
+   getchar();
+   
+  	}	 
 void ClienteFuncoes::pedidos(){
 	
 	Cliente c;
@@ -124,7 +178,7 @@ void ClienteFuncoes::pedidos(){
 	
 	
 	printf("Insira o nome do cliente");
-	scanf("&s",nomeDoClientePedindo);
+	gets(nomeDoClientePedindo);
 	localCorrente = achaCliente( nomeDoClientePedindo);
 	fseek(arq, localCorrente * sizeof(Cliente), 0);
 	fread(&c, sizeof(struct Cliente), 1, arq);
@@ -139,9 +193,9 @@ void ClienteFuncoes::pedidos(){
 }
 void ClienteFuncoes::mostrarClientes(){
 
-    fseek( arq, 0, SEEK_SET );
+    fseek( arq, 0, 0 );
 	 fflush(arq);
-	fflush(stdin);
+	 fflush(stdin);
     fflush(stdout);
 	 Cliente c;
     
@@ -156,7 +210,6 @@ void ClienteFuncoes::mostrarClientes(){
 	 	printf("\nBairro => %s ",c.bairro);
 	 	printf("\nRua => %s ",c.rua);
 	 	printf("\nNumero => %s \n",c.numero);
-		printf("%d",quantidadeDeClientes);
 	}
     getchar();
 }
@@ -178,7 +231,7 @@ ClienteFuncoes::ClienteFuncoes()
          quantidadeDeClientes++;
         }
   }
-  clientesNaMemoria[quantidadeDeClientes];
+  fseek(arq,0,0);
  }
 ClienteFuncoes::~ClienteFuncoes(){
                fclose(arq);
@@ -188,5 +241,30 @@ ClienteFuncoes::~ClienteFuncoes(){
 
 
 void ClienteFuncoes::menu(){
-	system("pause");
+	ClienteFuncoes c;
+	int opcao;
+	do{
+		system("cls");
+		printf("\t[1] Para inserir cliente\n");
+		printf("\t[2] Para remover um cliente\n");
+		printf("\t[3] Para inserir um pedido em um cliente\n");
+		printf("\t[4] Para mostrar todos os clientes\n");
+		printf("\t[5] Para sair\n");
+		
+		fseek(arq,0,0);
+	
+		fflush(stdin);
+		scanf("%d",&opcao);
+		
+		if(opcao == 1)
+			c.inserirCliente();
+		if(opcao == 2)
+			c.removerCliente();
+		if(opcao == 3)
+			c.pedidos();
+		if(opcao == 4)
+			c.mostrarClientes();
+	}while( opcao != 5);
+	return;
+	
 }	

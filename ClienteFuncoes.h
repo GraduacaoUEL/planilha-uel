@@ -20,6 +20,8 @@ struct 	ClienteFuncoes{
     void removerCliente();
     void pedidos();
     int achaCliente(char nome[100]);
+       int achaInsere(char nome[100]);
+       	int ClienteFuncoes::busca(Cliente *c,char clienteParaAchar[100],int inicio, int posicao);
 	ClienteFuncoes();
 	~ClienteFuncoes();
 	void menu();
