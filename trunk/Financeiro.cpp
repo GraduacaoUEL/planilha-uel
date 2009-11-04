@@ -20,9 +20,10 @@ FinanceiroFuncoes::~FinanceiroFuncoes()
 void FinanceiroFuncoes::entrada()
 {
 	int op, sn;
+	struct Financeiro f;
 
 	do{
-		system("clear");
+		system("cls");
 		printf("Escolha o tipo de entrada\n\n\n");
 		printf("( 1 )Deposito\n");
 		printf("( 2 )Vendas ao cliente\n");
@@ -34,20 +35,16 @@ void FinanceiroFuncoes::entrada()
 
 	if(op == 1)
 	{
-		system("clear");
+		system("cls");
 
 		printf("Digite o valor do deposito:  \n");
-		float aux1;
-		scanf("%f", aux1);
-
-		f->entradav = aux1;
+        
+        scanf("%f", &f.entradav);
 
 		printf("Faça uma breve descrição da operação:\n");
-		char aux[30];
-		scanf("%s", &aux);
-		strcpy(f->descricao, aux);
+		scanf("%s", f.descricao);
 
-		system("clear");
+		system("cls");
 
 		printf("Confirma o deposito [1 - SIM/ 2 - NAO]:\n\n");
 		scanf("%d", &sn);
@@ -76,13 +73,13 @@ void FinanceiroFuncoes::entrada()
 	}
 	else if(op == 2)
 	{
-		system("clear");
+		system("cls");
 
 		printf("Digite o valor da venda:  \n");
 
 		//Implementar cliente
 
-		system("clear");
+		system("cls");
 
 		printf("Confirma a venda [1 - SIM/ 2 - NAO]:\n\n");
 		scanf("%d", &sn);
@@ -106,6 +103,7 @@ void FinanceiroFuncoes::entrada()
 
 void FinanceiroFuncoes::historicoEntrada()
 {
+    Financeiro f;
 	if((fin = fopen("financeiro.fin", "rb")) == NULL)
 	{
 		printf("Erro ao abrir o arquivo financeiro.fin\n");
@@ -113,11 +111,12 @@ void FinanceiroFuncoes::historicoEntrada()
 	}
 
 	rewind(fin);
-	for(int i = 0; i != feof(fin); i++)
+/*	for(int i = 0; i != feof(fin); i++)
 	{
-		fread(&f[2], sizeof(struct Financeiro), 1, fin);
-		printf("%f\t", f[2].entradav);
-		printf("%s\n", f[2].descricao);
+		fread(&f, sizeof(struct Financeiro), 1, fin);
+		printf("%f\t", f[1].entradav);
+		printf("%s\n", f[1].descricao);
 
 	}
+*/
 }

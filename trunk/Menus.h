@@ -15,6 +15,7 @@ struct Menus
 	void principal();
 	void menuFinanceiro();
 	void menuCliente();
+	void menuFornecedores();
 };
 
 

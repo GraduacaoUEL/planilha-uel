@@ -5,13 +5,16 @@
  *      Author: helioalb
  */
 #include "Menus.h"
-
+#include "Cliente.h"
+#include "ClienteFuncoes.h"
+#include "Financeiro.h"
+#include "Fornecedores.h"
 void Menus::principal()
 {
     int op;
 
     do{
-            system("clear");
+            system("cls");
             printf("--------------------SISTEMA DE CONTROLE DE RESTAURANTES--------------------\n\n\n\n");
             printf("Digite a opcao correspondente ao modulo desejado e pressione Enter\n\n\n");
             printf("( 1 ) Clientes\n");
@@ -33,13 +36,17 @@ void Menus::principal()
             menuFinanceiro();
             break;
 
+    case 3:
+            menuFornecedores();
+            break;
+
     }
 
 }
 
 void Menus::menuCliente()
 {
-    	ClienteFuncoes c;
+   	ClienteFuncoes c;
 	int opcao;
 	do{
 		system("cls");
@@ -71,7 +78,7 @@ void Menus::menuFinanceiro()
 	FinanceiroFuncoes f;
 
 	do{
-		system("clear");
+		system("cls");
 		printf("--------------------MOVIMENTACOES FINANCEIRAS--------------------\n\n\n\n");
 		printf("Digite a opcao desejada e pressione Enter\n\n\n");
 		printf("( 1 ) Entrada\n");
@@ -106,3 +113,9 @@ void Menus::menuFinanceiro()
 	}
 }
 
+void Menus::menuFornecedores()
+{
+   	Fornecedores teste;
+	teste.graveFornecedor();
+	teste.leiaFornecedor();
+}

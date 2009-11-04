@@ -98,7 +98,7 @@ void Data::grave()
 	
 		printf("Entre o ano > ");
 		fgets(buffer, sizeof(buffer), stdin);
-		ano = atoi(buffer)
+		ano = atoi(buffer);
 	}
 }
 
