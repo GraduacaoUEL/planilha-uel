@@ -68,9 +68,10 @@ void Menus::menuCliente()
 		printf("Digite a opcao desejada e pressione Enter\n\n\n");
         printf("( 1 ) Para inserir cliente\n");
 		printf("( 2 ) Para remover um cliente\n");
-		printf("( 3 ) Para inserir um pedido em um cliente\n");
+		printf("( 3 ) Para inserir ou vizualizar os pedidos de um cliente\n");
 		printf("( 4 ) Para mostrar todos os clientes\n");
-		printf("( 5 ) Para sair\n");
+		printf("( 5 ) Para vizualizar um cliente\n");
+		printf("( 6 ) Para sair\n");	
 		printf("\nOpcao => ");
 		
 	
@@ -79,13 +80,16 @@ void Menus::menuCliente()
 		
 		if(opcao == 1)
 			c.inserirCliente();
-		if(opcao == 1)
-			c.inserirCliente();	
+		if(opcao == 2)
+			c.removerCliente();	
 		if(opcao == 3)
 			c.pedidos();
 		if(opcao == 4)
 			c.mostrarClientes();
-	}while( opcao != 5);
+		if(opcao ==5)
+			c.vizualizarCliente();
+			
+	}while( opcao != 6);
 	c.menu->principal();
      
 }
