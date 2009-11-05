@@ -5,8 +5,8 @@ CPP  = g++.exe
 CC   = gcc.exe
 WINDRES = windres.exe
 RES  = 
-OBJ  = main.o Menus.o Financeiro.o ClienteFuncoes.o Data.o ProdutosFuncoes.o Fornecedor.o FornecedorFuncoes.o $(RES)
-LINKOBJ  = main.o Menus.o Financeiro.o ClienteFuncoes.o Data.o ProdutosFuncoes.o Fornecedor.o FornecedorFuncoes.o $(RES)
+OBJ  = main.o Menus.o Financeiro.o ClienteFuncoes.o Data.o ProdutosFuncoes.o FornecedorFuncoes.o Fornecedor.o $(RES)
+LINKOBJ  = main.o Menus.o Financeiro.o ClienteFuncoes.o Data.o ProdutosFuncoes.o FornecedorFuncoes.o Fornecedor.o $(RES)
 LIBS =  -L"C:/MinGW/lib"  
 INCS =  -I"C:/Dev-Cpp/include" 
 CXXINCS =  -I"C:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"C:/Dev-Cpp/include/c++/3.4.2/backward"  -I"C:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"C:/Dev-Cpp/include/c++/3.4.2"  -I"C:/Dev-Cpp/include" 
@@ -44,8 +44,8 @@ Data.o: Data.cpp
 ProdutosFuncoes.o: ProdutosFuncoes.cpp
 	$(CPP) -c ProdutosFuncoes.cpp -o ProdutosFuncoes.o $(CXXFLAGS)
 
-Fornecedor.o: Fornecedor.cpp
-	$(CPP) -c Fornecedor.cpp -o Fornecedor.o $(CXXFLAGS)
-
 FornecedorFuncoes.o: FornecedorFuncoes.cpp
 	$(CPP) -c FornecedorFuncoes.cpp -o FornecedorFuncoes.o $(CXXFLAGS)
+
+Fornecedor.o: Fornecedor.cpp
+	$(CPP) -c Fornecedor.cpp -o Fornecedor.o $(CXXFLAGS)
