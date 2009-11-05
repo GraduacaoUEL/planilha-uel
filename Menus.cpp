@@ -106,15 +106,13 @@ void Menus::menuFinanceiro()
 		printf("Digite a opcao desejada e pressione Enter\n\n\n");
 		printf("( 1 ) Entrada\n");
 		printf("( 2 ) Saida\n");
-		printf("( 3 ) Agendar contas a pagar\n");
-		printf("( 4 ) Agendar contas a receber(fiado)\n");
-		printf("( 5 ) Historico de Entradas\n");
-		printf("( 6 ) Historico de Saidas\n");
-		printf("( 7 ) Voltar\n");
+		printf("( 3 ) Historico de Entradas\n");
+		printf("( 4 ) Historico de Saidas\n");
+		printf("( 5 ) Voltar\n");
 		printf("\nOpcao => ");
 
 		scanf("%d", &op);
-	}while(op < 1 || op > 7);
+	}while(op < 1 || op > 5);
 
 	switch(op)
 	{
@@ -126,16 +124,16 @@ void Menus::menuFinanceiro()
         f.saida();
 		break;
 
-	case 5:
+	case 3:
 		f.historicoEntrada();
 		break;
 		
-	case 6:
+	case 4:
 		f.historicoSaida();
 		break;
 		
 
-	case 7:
+	case 5:
 		f.menu->principal();
 		break;
 

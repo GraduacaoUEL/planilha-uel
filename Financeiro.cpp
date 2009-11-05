@@ -58,9 +58,19 @@ void FinanceiroFuncoes::entrada()
 		{
               
   
+			if((sld = fopen("saldo.fin", "rb")) == NULL)
+			{
+
+                sld = fopen("saldo.fin", "wb");
+                valor = 0.0;
+			}
+
+
+
 			if((fin = fopen("fin_in.fin", "ab")) == NULL)
 			{
 				printf("Erro ao abrir o arquivo fin_in.fin\n");
+				
 				exit(1);
 			}
 
