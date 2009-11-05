@@ -31,6 +31,8 @@ void ProdutosFuncoes::inserirProduto(){
    printf("\nQuantidade em Estoque => ");
    gets(p.quantidade);
    
+   p.status='1';
+   
    localParaInserir = achaInsere(p.nomedoproduto );
    	
    fseek(arq,(localParaInserir)*sizeof(Produtos),0);
@@ -125,21 +127,39 @@ void ProdutosFuncoes::removerProduto(){
      char opcao,produtoParaRemover[100];
    
      
-     printf("Digite o nome do produto que sera removido\t");
+     printf("\nDigite o nome do produto que sera removido => ");
      fflush(stdin);
      gets(produtoParaRemover);
    
 	 localParaRemover = achaProduto(produtoParaRemover);
-     printf("Local para remover  => %d \n",localParaRemover);
+
      fseek(arq, (localParaRemover) * sizeof(Produtos), 0);
 	 fread(&p, sizeof(Produtos), 1, arq);
-
-	printf("Nome do produto => %s  ",p.nomedoproduto);
-   printf("Codigo do produto => %s  ",p.codigo);
-  	printf("Tem certeza que deseja excluir ? \n[S]IM \t[N]AO");
-   getchar();
-   
-  	}
+  
+	if(strcmp(produtoParaRemover,p.nomedoproduto)!=0)
+	{
+		printf("%s Este produto nao foi encontrado",produtoParaRemover);
+		getchar();
+		return;
+	}
+		
+	
+	printf("Nome do produto => %s \n ",p.nomedoproduto);
+   printf("Codigo do produto => %s \n ",p.codigo);
+	
+    do{	
+	  	printf("\nTem certeza que deseja excluir ? \n[s]im \t[n]ao\n");
+	   fflush(stdin);
+		opcao=getchar();
+	   if(opcao == 's')
+	   	p.status='0';
+	   	p.nomedoproduto[0]='\0';
+	   	printf("\nProduto removido");
+		}while(opcao!='s' && opcao !='n')  ;
+	fseek(arq, (localParaRemover) * sizeof(Produtos), 0);
+	fwrite(&p,sizeof(Produtos),1,arq);
+}
+  	
 void ProdutosFuncoes::modificarProduto(){
 
 }
@@ -148,6 +168,8 @@ void ProdutosFuncoes::modificarProduto(){
 
 void ProdutosFuncoes::mostrarProduto(){
 
+    int cont=0;
+    
     fseek( arq, 0, 0 );
 	 fflush(arq);
 	 fflush(stdin);
@@ -156,13 +178,21 @@ void ProdutosFuncoes::mostrarProduto(){
     
     while ((fread(&p,sizeof(Produtos),1,arq))==1)
     {
+        if(p.status!='0')
+        {
         printf("\nNome => %s ",p.nomedoproduto);
 	 	printf("\nCodigo => %s ",p.codigo);	
 	 	printf("\nFabricante => %s ",p.fabricante);
 		printf("\nValidade => %s ",p.validade);
 	 	printf("\nQuantidade => %s ",p.quantidade);
-	 	printf("\nPreco => %s ",p.preco);
+	 	printf("\nPreco => %s \n",p.preco);
+	 	cont++;
+        }
 	}
+	
+	if(cont==0)
+	printf("\nNenhum produto encontrado!");
+
     getchar();
 }
 
