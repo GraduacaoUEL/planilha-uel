@@ -10,7 +10,7 @@
 #include "Cabecalhos.h"
 #include "Menus.h"
 #include "Cliente.h"
-#include "Fornecedores.h"
+
 struct Financeiro
 {
 	float saldo;
@@ -19,7 +19,6 @@ struct Financeiro
 	char descricao[30];
 	char nome[30];
 	struct Cliente c;
-	struct Fornecedores;
 };
 
 struct FinanceiroFuncoes

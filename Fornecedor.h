@@ -1,16 +1,16 @@
  /*
- * Fornecedores.h
+ *  Fornecedor.h
  *
- *  Created on: 01/11/2009
+ *  Created on: 04/11/2009
  *      Author: Hayato
  */
-#ifndef FORNECEDORES_H_
-#define FORNECEDORES_H_
+#ifndef FORNECEDOR_H_
+#define FORNECEDOR_H_
 
 #include "Cabecalhos.h"
 #include "Data.h"
 
-typedef struct Fornecedores
+typedef struct Fornecedor
 {
 	char nome[100];
 	char cnpj[20];
@@ -21,11 +21,11 @@ typedef struct Fornecedores
 
 	Data compra, previsao, entrega;
 	bool comprou, entregue;
-
-	void graveFornecedor();
+	
+	bool apagar;
+	
 	void leiaFornecedor();
-	void atualizaFornecedor();
 	void mostreStatus();
-	void atualizaStatus();
 };
-#endif /* FINANCEIRO_H_ */
+
+#endif /* FORNECEDOR_H_ */

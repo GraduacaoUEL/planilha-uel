@@ -8,7 +8,8 @@
 #include "Cliente.h"
 #include "ClienteFuncoes.h"
 #include "Financeiro.h"
-#include "Fornecedores.h"
+#include "Fornecedor.h"
+#include "FornecedorFuncoes.h"
 #include "Produtos.h"
 #include "ProdutosFuncoes.h"
 
@@ -142,9 +143,74 @@ void Menus::menuFinanceiro()
 
 void Menus::menuFornecedores()
 {
-   	Fornecedores teste;
-	teste.graveFornecedor();
-	teste.leiaFornecedor();
+	FornecedorFuncoes teste;
+	char buffer[5];
+	int op;
+
+	fflush(stdin);
+	do {
+		system("cls");
+		printf("----------------------------CADASTRO DE FORNECEDORES----------------------------\n\n\n\n");
+		printf("Digite a opcao desejada e pressione Enter\n\n\n");
+		printf(" ( 1 ) Registrar fornecedor\n");
+		printf(" ( 2 ) Mostrar todos os fornecedores\n");
+		printf(" ( 3 ) Mostrar um unico fornecedor\n");
+		printf(" ( 4 ) Atualizar dados de um fornecedor\n");
+		printf(" ( 5 ) Mostrar status de um fornecedor\n");
+		printf(" ( 6 ) Atualizar status de um fornecedor\n");
+		printf(" ( 7 ) Apagar fornecedor\n");
+		printf(" ( 8 ) Voltar ao menu principal\n");
+	
+		do {
+			printf("\n\nSelecione a opcao desejada > ");
+			fgets(buffer, sizeof(buffer), stdin);
+			op = atoi(buffer);
+		} while (op < 1 && op > 7);
+	
+		system("cls");
+
+		if (op == 1)
+		{
+			teste.graveFornecedor();
+		}
+
+		else if (op == 2)
+		{
+			teste.leiaFornecedores();
+		}
+
+		else if (op == 3)
+		{
+			printf("EXIBIR DADOS DE UM UNICO FORNECEDOR\n\n");
+			teste.leiaFornecedorUnico(teste.buscaFornecedor());
+		}
+		
+		else if (op == 4)
+		{
+			printf("ATUALIZAR DADOS DE UM FORNECEDOR\n\n");
+			teste.atualizaFornecedor(teste.buscaFornecedor());
+		}
+		
+		else if (op == 5)
+		{
+			printf("EXIBIR STATUS DE FORNECEDOR\n\n");
+			teste.mostreStatus(teste.buscaFornecedor());
+		}
+
+		else if (op == 6)
+		{
+			printf("ATUALIZAR STATUS DE UM FORNECEDOR\n\n");
+			teste.atualizaStatus(teste.buscaFornecedor());
+		}
+
+		else if (op == 7)
+		{	
+			printf("APAGAR FORNECEDOR\n\n");
+			teste.apagarFornecedor(teste.buscaFornecedor());
+		}
+
+		system("pause");
+	} while (op != 8);
 }
 
 void Menus::menuProdutos()
