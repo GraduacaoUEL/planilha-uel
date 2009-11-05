@@ -24,7 +24,7 @@ struct Financeiro
 
 struct FinanceiroFuncoes
 {
-	FILE *fin;
+	FILE *fin, *sld;
 	struct Menus *menu;
 
 
