@@ -143,8 +143,8 @@ void Menus::menuFinanceiro()
 
 void Menus::menuFornecedores()
 {
-   		FornecedorFuncoes teste;
-	Fornecedor f;
+   	FornecedorFuncoes teste;
+   	FornecedorFuncoes f;
 	char buffer[5];
 	int op;
 
@@ -212,10 +212,11 @@ void Menus::menuFornecedores()
 
 		else if (op == 8)
 		{	
-			printf("saindo");
+			f.menu->principal();
 		}
 		
-	} while ( op < 1 || op > 8);
+	} while (op > 1 && op < 8);
+	system("pause");
 }
 
 void Menus::menuProdutos()
