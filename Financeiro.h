@@ -10,6 +10,7 @@
 #include "Cabecalhos.h"
 #include "Menus.h"
 #include "Cliente.h"
+#include "FornecedorFuncoes.h"
 
 struct Financeiro
 {
@@ -19,6 +20,7 @@ struct Financeiro
 	char descricao[30];
 	char nome[30];
 	struct Cliente c;
+	struct FornecedorFuncoes;
 };
 
 struct FinanceiroFuncoes

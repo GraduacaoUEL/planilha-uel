@@ -143,7 +143,8 @@ void Menus::menuFinanceiro()
 
 void Menus::menuFornecedores()
 {
-	FornecedorFuncoes teste;
+   		FornecedorFuncoes teste;
+	Fornecedor f;
 	char buffer[5];
 	int op;
 
@@ -209,8 +210,12 @@ void Menus::menuFornecedores()
 			teste.apagarFornecedor(teste.buscaFornecedor());
 		}
 
-		system("pause");
-	} while (op != 8);
+		else if (op == 8)
+		{	
+			printf("saindo");
+		}
+		
+	} while ( op < 1 || op > 8);
 }
 
 void Menus::menuProdutos()
