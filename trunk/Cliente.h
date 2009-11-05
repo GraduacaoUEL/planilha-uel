@@ -23,7 +23,7 @@ struct Cliente{
    char numero[100];
    char nascimento[10];
    char bairro[100];
-   char pedido[100][100];
+   char pedido[100];
    char data[100];
 	
 };
