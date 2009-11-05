@@ -157,9 +157,8 @@ void Menus::menuProdutos()
 		printf("Digite a opcao desejada e pressione Enter\n\n\n");
 		printf("( 1 ) Para inserir produto\n");
 		printf("( 2 ) Para remover um produto\n");
-		printf("( 3 ) Para modificar um produto\n");
-		printf("( 4 ) Para mostrar todos os produtos\n");
-        printf("( 5 ) Para sair\n");
+		printf("( 3 ) Para mostrar todos os produtos\n");
+        printf("( 4 ) Para sair\n");
 		printf("\nOpcao => ");
 	
 		fflush(stdin);
@@ -170,11 +169,10 @@ void Menus::menuProdutos()
 		if(opcao == 2)
 			p.removerProduto();
 		if(opcao == 3)
-			p.modificarProduto();
-		if(opcao == 4)
 			p.mostrarProduto();
+			
 
-	}while( opcao != 5);
+	}while( opcao != 4);
 	p.menu->principal();
      
 }
