@@ -13,7 +13,7 @@ void ClienteFuncoes::inserirCliente(){
    printf("Nome do cliente\t");
    gets(c.nome);
    
- /*  fflush(stdin);
+   fflush(stdin);
    printf("CPF\t");
    gets(c.cpf);
    
@@ -49,7 +49,7 @@ void ClienteFuncoes::inserirCliente(){
 	printf("\nCEP\t");
    gets(c.cep);
    
-  */ 
+   
    
 	localParaInserir = achaInsere(c.nome );
    
@@ -61,7 +61,7 @@ void ClienteFuncoes::inserirCliente(){
 	fflush(stdin);
    printf("\n\nCliente inserido\n");
    getchar();
-   
+   fseek(arq,0,0);
 	quantidadeDeClientes++;    
 	fflush(arq);
 	
@@ -70,13 +70,14 @@ void ClienteFuncoes::inserirCliente(){
 }
 
 int ClienteFuncoes::achaCliente(char clienteParaAchar[100]){
-   Cliente *c,cli;
+   
+	Cliente *c,cli;
 	int local;
-	c = new Cliente[quantidadeDeClientes];
+	c = new Cliente[quantidadeDeClientes+2];
 	int i;
 	i = 0;
 	
-	fseek( arq, 0, SEEK_SET );
+	fseek( arq, 0, 0 );
 	fflush(arq);
 	fflush(stdin);
    fflush(stdout);
@@ -129,19 +130,23 @@ int ClienteFuncoes::achaInsere(char clienteParaAchar[100]){
 	
 	delete(c);
 	return local;
-} 
+} 		
+
 int ClienteFuncoes::busca(Cliente *c,char clienteParaAchar[100],int inicio,int posicao){
-	
+	bool verifica;
 
 	if(quantidadeDeClientes !=0 )
 		while( c[inicio].nome[posicao] < clienteParaAchar[posicao] && inicio<quantidadeDeClientes )
 		{
+			if(posicao!=0 && c[inicio].nome[posicao-1] != clienteParaAchar[posicao-1] )
+				return inicio;
+			else 
+				verifica = true;
 			inicio++;
 		}
 	if(c[inicio].nome[posicao] == clienteParaAchar[posicao])
 			return busca(c,clienteParaAchar,inicio,posicao+1);
-	
-	return inicio;
+		return inicio;
 }		
 		
 	
@@ -154,15 +159,25 @@ void ClienteFuncoes::removerCliente(){
      
 	printf("Digite o nome do cliente que sera removido\t");
    fflush(stdin);
-//	gets(clienteParaRemover);
+	gets(clienteParaRemover);
    
 	localParaRemover = achaCliente(clienteParaRemover);
-   printf("Local para remover  => %d \n",localParaRemover);
+   
+   
    fseek(arq, (localParaRemover) * sizeof(Cliente), 0);
 	fread(&c, sizeof( Cliente), 1, arq);
 
-	printf("Nome do cliente => %s  ",c.nome);
-   printf("CPF do Cliente => %s  ",c.cpf);
+	if(strcmp(clienteParaRemover,c.nome)!=0)
+	{
+		printf("Cliente nao encontrado%s",c.nome);
+		getchar();
+		return;
+	}
+		
+	
+	printf("Nome do cliente => %s \n ",c.nome);
+   printf("CPF do Cliente => %s \n ",c.cpf);
+	
   	printf("Tem certeza que deseja excluir ? \n[s]im \tn[n]ao");
    getchar();
    
@@ -171,22 +186,46 @@ void ClienteFuncoes::pedidos(){
 	
 	Cliente c;
 	char nomeDoClientePedindo[100];
-	int localCorrente;
+	int localCorrente,opcao;
 	
-	
-	printf("Insira o nome do cliente");
+	fflush(stdin);
+	printf("Insira o nome do cliente\n");
 	gets(nomeDoClientePedindo);
+	
 	localCorrente = achaCliente( nomeDoClientePedindo);
 	fseek(arq, localCorrente * sizeof(Cliente), 0);
-	fread(&c, sizeof(struct Cliente), 1, arq);
-	printf("Digite o pedido para o cliente %s e 0 para cancelar ",c.nome);
-	int i =0;
-	do{
+	fread(&c, sizeof(Cliente), 1, arq);
+	
+	if(strcmp(nomeDoClientePedindo,c.nome)!=0)
+	{
+		printf("Cliente nao encontrado");
+		getchar();
+		return;
+	}
+	fflush(stdin);
+	printf("Digite 1 para vizualizar os pedidos e 2 para efetuar pedidos\n");
+	scanf("%d",&opcao);
+	
+	if(opcao==1){
+	
+		printf("Pedidos do cliente %s \n",c.nome);
+		printf("Dia %s \n",c.data);
+		printf("Pedido %s \n",c.pedido);
 		fflush(stdin);
-		scanf("%s",c.pedido);
-	}while(c.pedido[i][0] != '0');
-	strcpy(c.data,__DATE__);
-
+		getchar();
+	}
+	if(opcao ==2){
+		fflush(stdin);
+		printf("Digite o pedido para o cliente %s \n",c.nome);
+		gets(c.pedido);
+		strcpy(c.data,__DATE__);
+		fseek(arq, localCorrente * sizeof(Cliente), 0);
+		fwrite(&c,sizeof(Cliente),1,arq);
+		printf("Pedido inserido em %s %s\n",__DATE__,c.pedido);
+		fflush(stdin);
+		getchar();
+	}
+	fseek(arq,0,0);
 }
 void ClienteFuncoes::mostrarClientes(){
 
@@ -233,47 +272,42 @@ ClienteFuncoes::ClienteFuncoes()
 ClienteFuncoes::~ClienteFuncoes(){
                fclose(arq);
 }
-
-
-
-
-/*void ClienteFuncoes::menu(){
-	int op;
-	ClienteFuncoes c;
-
-	do{
-		system("cls");
-		printf("\t[1] Para inserir cliente\n");
-		printf("\t[2] Para remover um cliente\n");
-		printf("\t[3] Para inserir um pedido em um cliente\n");
-		printf("\t[4] Para mostrar todos os clientes\n");
-		printf("\t[5] Para sair\n");
-		
-		fseek(arq,0,0);
+void ClienteFuncoes::vizualizarCliente(){
 	
-		fflush(stdin);
-		scanf("%d",&op);
-		
-			c.removerCliente();
-		switch(op){
-			
-		
-		case 1:
-				c.inserirCliente();
-				break;
-				
-		case 2:
-				c.removerCliente();
-				break;
-		case 3:
-				c.pedidos();
-				break;
-		case 4:
-			c.mostrarClientes();
-			break;
-		}
-	}while( op != 5);
-	return;
+	Cliente c;
+	char nomeDoClientePedindo[100];
+	int localCorrente;
 	
+	fflush(stdin);
+	printf("Insira o nome do cliente\n");
+	gets(nomeDoClientePedindo);
+	
+	localCorrente = achaCliente( nomeDoClientePedindo);
+	fseek(arq, localCorrente * sizeof(Cliente), 0);
+	fread(&c, sizeof(Cliente), 1, arq);
+	
+	if(strcmp(nomeDoClientePedindo,c.nome)!=0)
+	{
+		printf("Cliente nao encontrado");
+		getchar();
+		return;
+	}
+	else{
+		printf("\nNome => %s ",c.nome);
+	 	printf("\nCPF => %s ",c.cpf);	
+	 	printf("\nNascimento => %s ",c.nascimento);
+		printf("\nTelefone Residencia => %s ",c.telefoneResidencial);
+	 	printf("\nTelefone Celular => %s ",c.telefoneCelular);
+	 	printf("\nCidade => %s ",c.cidade);
+	 	printf("\nBairro => %s ",c.bairro);
+	 	printf("\nRua => %s ",c.rua);
+	 	printf("\nNumero => %s ",c.numero);
+	 	printf("\nPedido => %s ",c.pedido);
+		printf("\nData => %s \n",c.data);
+	}
+    getchar();
 }	
-*/
+
+
+
+

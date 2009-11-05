@@ -24,6 +24,7 @@ struct 	ClienteFuncoes{
        	int ClienteFuncoes::busca(Cliente *c,char clienteParaAchar[100],int inicio, int posicao);
 	ClienteFuncoes();
 	~ClienteFuncoes();
+	void vizualizarCliente();
     struct  Menus *menu;
 //	void menu();
 };   
