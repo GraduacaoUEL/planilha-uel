@@ -11,12 +11,13 @@
 
 struct Produtos{
   
-   char codigo[20];
    char nomedoproduto[100];
+   char codigo[20];
    char fabricante[20];
    char validade[20];
    char quantidade[20];
    char preco[20];
+   char status;
 	
 };
 
