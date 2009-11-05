@@ -9,6 +9,8 @@
 #include "ClienteFuncoes.h"
 #include "Financeiro.h"
 #include "Fornecedores.h"
+#include "Produtos.h"
+#include "ProdutosFuncoes.h"
 
 void Menus::principal()
 {
@@ -23,7 +25,8 @@ void Menus::principal()
             printf("( 3 ) Fornecedores\n");
             printf("( 4 ) Produtos\n");
             printf("( 5 ) Sair\n");
-
+            printf("\nOpcao => ");
+            
             scanf("%d", &op);
     }while(op < 1 || op > 5);
 
@@ -42,7 +45,7 @@ void Menus::principal()
             break;
 
     case 4:
-//Função do Jorge
+            menuProdutos();
             break;
 
 
@@ -61,11 +64,14 @@ void Menus::menuCliente()
 	int opcao;
 	do{
 		system("cls");
-		printf("\t[1] Para inserir cliente\n");
-		printf("\t[2] Para remover um cliente\n");
-		printf("\t[3] Para inserir um pedido em um cliente\n");
-		printf("\t[4] Para mostrar todos os clientes\n");
-		printf("\t[5] Para sair\n");
+		printf("---------------------------CADASTRO DE CLIENTES---------------------------\n\n\n\n");
+		printf("Digite a opcao desejada e pressione Enter\n\n\n");
+        printf("( 1 ) Para inserir cliente\n");
+		printf("( 2 ) Para remover um cliente\n");
+		printf("( 3 ) Para inserir um pedido em um cliente\n");
+		printf("( 4 ) Para mostrar todos os clientes\n");
+		printf("( 5 ) Para sair\n");
+		printf("\nOpcao => ");
 		
 	
 		fflush(stdin);
@@ -73,8 +79,10 @@ void Menus::menuCliente()
 		
 		if(opcao == 1)
 			c.inserirCliente();
+		if(opcao == 1)
+			c.inserirCliente();	
 		if(opcao == 3)
-			c.removerCliente();
+			c.pedidos();
 		if(opcao == 4)
 			c.mostrarClientes();
 	}while( opcao != 5);
@@ -90,7 +98,7 @@ void Menus::menuFinanceiro()
 
 	do{
 		system("cls");
-		printf("--------------------MOVIMENTACOES FINANCEIRAS--------------------\n\n\n\n");
+		printf("------------------------MOVIMENTACOES FINANCEIRAS------------------------\n\n\n\n");
 		printf("Digite a opcao desejada e pressione Enter\n\n\n");
 		printf("( 1 ) Entrada\n");
 		printf("( 2 ) Saida\n");
@@ -99,6 +107,7 @@ void Menus::menuFinanceiro()
 		printf("( 5 ) Historico de Entradas\n");
 		printf("( 6 ) Historico de Saidas\n");
 		printf("( 7 ) Voltar\n");
+		printf("\nOpcao => ");
 
 		scanf("%d", &op);
 	}while(op < 1 || op > 7);
@@ -134,4 +143,36 @@ void Menus::menuFornecedores()
    	Fornecedores teste;
 	teste.graveFornecedor();
 	teste.leiaFornecedor();
+}
+
+void Menus::menuProdutos()
+{
+   	ProdutosFuncoes p;
+	int opcao;
+	do{
+		system("cls");
+		printf("----------------------------CADASTRO DE PRODUTOS----------------------------\n\n\n\n");
+		printf("Digite a opcao desejada e pressione Enter\n\n\n");
+		printf("( 1 ) Para inserir produto\n");
+		printf("( 2 ) Para remover um produto\n");
+		printf("( 3 ) Para modificar um produto\n");
+		printf("( 4 ) Para mostrar todos os produtos\n");
+        printf("( 5 ) Para sair\n");
+		printf("\nOpcao => ");
+	
+		fflush(stdin);
+		scanf("%d",&opcao);
+		
+		if(opcao == 1)
+			p.inserirProduto();
+		if(opcao == 2)
+			p.removerProduto();
+		if(opcao == 3)
+			p.modificarProduto();
+		if(opcao == 4)
+			p.mostrarProduto();
+
+	}while( opcao != 5);
+	p.menu->principal();
+     
 }

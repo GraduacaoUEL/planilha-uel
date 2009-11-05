@@ -5,25 +5,28 @@ void Fornecedores::graveFornecedor() {
 	char buffer[31];
 	Fornecedores temp;
 	int gravar;
-
-	printf("CADASTRO DE FORNECEDORES\n");
-
-	printf("Entre o nome do fornecedor > ");
+	
+	system("cls");
+	fflush(stdin);
+    printf("--------------------------CADASTRO DE FORNECEDORES--------------------------\n");
+    
+    fflush(stdin);
+	printf("\n\nEntre o nome do fornecedor => ");
 	fgets(temp.nome, sizeof(temp.nome), stdin);
 
-	printf("Entre o CNPJ (com pontos, barras e hifens) > ");
+	printf("\nEntre o CNPJ (com pontos, barras e hifens) => ");
 	fgets(temp.cnpj, sizeof(temp.cnpj), stdin);
 
-	printf("Entre o endereco > ");
+	printf("\nEntre o endereco => ");
 	fgets(temp.endereco, sizeof(temp.endereco), stdin);
 
-	printf("Entre a cidade > ");
+	printf("\nEntre a cidade => ");
 	fgets(temp.cidade, sizeof(temp.cidade), stdin);
 
-	printf("Entre o estado (2 letras) > ");
+	printf("\nEntre o estado (2 letras) => ");
 	fgets(temp.estado, sizeof(temp.estado), stdin);
 
-	printf("Entre o telefone > ");
+	printf("\nEntre o telefone => ");
 	fgets(temp.telefone, sizeof(temp.telefone), stdin);
 
 	printf("\nCONFIRME OS DADOS\n");
