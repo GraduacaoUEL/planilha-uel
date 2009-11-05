@@ -169,7 +169,7 @@ void ClienteFuncoes::removerCliente(){
 
 	if(strcmp(clienteParaRemover,c.nome)!=0)
 	{
-		printf("Cliente nao encontrado%s",c.nome);
+		printf("%s Este cliente nao foi encontrado",clienteParaRemover);
 		getchar();
 		return;
 	}
@@ -177,11 +177,17 @@ void ClienteFuncoes::removerCliente(){
 	
 	printf("Nome do cliente => %s \n ",c.nome);
    printf("CPF do Cliente => %s \n ",c.cpf);
-	
-  	printf("Tem certeza que deseja excluir ? \n[s]im \tn[n]ao");
-   getchar();
-   
-  	}	 
+	do{
+		
+	  	printf("Tem certeza que deseja excluir ? \n[s]im \tn[n]ao\n");
+	   fflush(stdin);
+		opcao=getchar();
+	   if(opcao == 's')
+	   	c.nome[0]='@';
+		}while(opcao!='s' && opcao !='n')  ;
+	fseek(arq, (localParaRemover) * sizeof(Cliente), 0);
+	fwrite(&c,sizeof(Cliente),1,arq);
+}	 
 void ClienteFuncoes::pedidos(){
 	
 	Cliente c;
@@ -198,7 +204,7 @@ void ClienteFuncoes::pedidos(){
 	
 	if(strcmp(nomeDoClientePedindo,c.nome)!=0)
 	{
-		printf("Cliente nao encontrado");
+		printf("%s Este cliente nao foi encontrado",nomeDoClientePedindo);
 		getchar();
 		return;
 	}
@@ -237,15 +243,17 @@ void ClienteFuncoes::mostrarClientes(){
     
     while ((fread(&c,sizeof(Cliente),1,arq))==1)
     {
-	 	printf("\nNome => %s ",c.nome);
-	 	printf("\nCPF => %s ",c.cpf);	
-	 	printf("\nNascimento => %s ",c.nascimento);
-		printf("\nTelefone Residencia => %s ",c.telefoneResidencial);
-	 	printf("\nTelefone Celular => %s ",c.telefoneCelular);
-	 	printf("\nCidade => %s ",c.cidade);
-	 	printf("\nBairro => %s ",c.bairro);
-	 	printf("\nRua => %s ",c.rua);
-	 	printf("\nNumero => %s \n",c.numero);
+		if(c.nome[0]!='@'){
+		 	printf("\nNome => %s ",c.nome);
+		 	printf("\nCPF => %s ",c.cpf);	
+		 	printf("\nNascimento => %s ",c.nascimento);
+			printf("\nTelefone Residencia => %s ",c.telefoneResidencial);
+		 	printf("\nTelefone Celular => %s ",c.telefoneCelular);
+		 	printf("\nCidade => %s ",c.cidade);
+		 	printf("\nBairro => %s ",c.bairro);
+		 	printf("\nRua => %s ",c.rua);
+		 	printf("\nNumero => %s \n",c.numero);
+	}
 	}
     getchar();
 }
@@ -288,7 +296,7 @@ void ClienteFuncoes::vizualizarCliente(){
 	
 	if(strcmp(nomeDoClientePedindo,c.nome)!=0)
 	{
-		printf("Cliente nao encontrado");
+		printf("%s Este cliente nao foi encontrado",nomeDoClientePedindo);
 		getchar();
 		return;
 	}
