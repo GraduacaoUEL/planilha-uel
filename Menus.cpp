@@ -70,7 +70,7 @@ void Menus::menuCliente()
 		printf("( 2 ) Para remover um cliente\n");
 		printf("( 3 ) Para inserir ou vizualizar os pedidos de um cliente\n");
 		printf("( 4 ) Para mostrar todos os clientes\n");
-		printf("( 5 ) Para vizualizar um cliente\n");
+		printf("( 5 ) Para visualizar um cliente\n");
 		printf("( 6 ) Para sair\n");	
 		printf("\nOpcao => ");
 		
