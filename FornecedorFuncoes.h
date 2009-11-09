@@ -14,7 +14,6 @@
 typedef struct FornecedorFuncoes {
 	Fornecedor* fornece;
 	int qteFornecedores;
-	Menus* menu;
 	
 	// construtor e destrutor
 	// construtor lê, destrutor escreve

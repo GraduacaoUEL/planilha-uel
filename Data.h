@@ -25,5 +25,4 @@ typedef struct Data
 	bool valida();
 };
 
-
 #endif /* DATA_H_ */

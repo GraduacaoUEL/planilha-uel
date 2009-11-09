@@ -8,9 +8,6 @@
 #define FINANCEIRO_H_
 
 #include "Cabecalhos.h"
-#include "Menus.h"
-#include "Cliente.h"
-#include "FornecedorFuncoes.h"
 
 struct Financeiro
 {
@@ -19,27 +16,6 @@ struct Financeiro
 	float saidav;
 	char descricao[30];
 	char nome[30];
-	struct Cliente c;
-	struct FornecedorFuncoes;
 };
-
-struct FinanceiroFuncoes
-{
-	FILE *fin, *sld;
-	struct Menus *menu;
-
-
-	FinanceiroFuncoes();
-	~FinanceiroFuncoes();
-	void entrada();
-	void saida();
-	//void contasAPagar();
-	//void contasAReceber();
-	void historicoEntrada();
-	void historicoSaida();
-	//void relatorioAPagar();
-	//void relatorioAReceber();
-};
-
 
 #endif /* FINANCEIRO_H_ */

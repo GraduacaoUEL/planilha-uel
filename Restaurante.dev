@@ -1,7 +1,7 @@
 [Project]
 FileName=Restaurante.dev
 Name=Restaurante
-UnitCount=18
+UnitCount=19
 Type=1
 Ver=1
 ObjFiles=
@@ -18,7 +18,7 @@ Icon=
 ExeOutput=
 ObjectOutput=
 OverrideOutput=0
-OverrideOutputName=
+OverrideOutputName=Restaurante.exe
 HostApplication=
 Folders=
 CommandLine=
@@ -26,8 +26,8 @@ UseCustomMakefile=0
 CustomMakefile=
 IncludeVersionInfo=0
 SupportXPThemes=0
-CompilerSet=0
-CompilerSettings=
+CompilerSet=1
+CompilerSettings=0000000000000001000000
 
 [Unit1]
 FileName=main.cpp
@@ -70,7 +70,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=Financeiro.cpp
+FileName=FinanceiroFuncoes.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -219,6 +219,16 @@ BuildCmd=
 
 [Unit18]
 FileName=Fornecedor.cpp
+CompileCpp=1
+Folder=Restaurante
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit19]
+FileName=FinanceiroFuncoes.h
 CompileCpp=1
 Folder=Restaurante
 Compile=1

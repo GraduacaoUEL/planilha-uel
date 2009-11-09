@@ -71,30 +71,30 @@ void FornecedorFuncoes::graveFornecedor() {
 
 	printf("CADASTRO DE FORNECEDORES\n\n");
 
-	printf("Entre o nome do fornecedor > ");
+	printf("Entre o nome do fornecedor => ");
 	fgets(temp.nome, sizeof(temp.nome), stdin);
 
-	printf("Entre o CNPJ (com pontos, barras e hifens) > ");
+	printf("Entre o CNPJ (com pontos, barras e hifens) => ");
 	fgets(temp.cnpj, sizeof(temp.cnpj), stdin);
 
 	while (verificaCNPJ(temp.cnpj) != -1) {
 		printf("Atencao! O CNPJ deve ser unico para cada empresa!\n");
-		printf("Entre o CNPJ (com pontos, barras e hifens) > ");
+		printf("Entre o CNPJ (com pontos, barras e hifens) => ");
 		fgets(temp.cnpj, sizeof(temp.cnpj), stdin);
 	}
 
-	printf("Entre o endereco > ");
+	printf("Entre o endereco => ");
 	fgets(temp.endereco, sizeof(temp.endereco), stdin);
 
-	printf("Entre a cidade > ");
+	printf("Entre a cidade => ");
 	fgets(temp.cidade, sizeof(temp.cidade), stdin);
 
-	printf("Entre o estado (2 letras) > ");
+	printf("Entre o estado (2 letras) => ");
 	fgets(temp.estado, sizeof(temp.estado), stdin);
 
-	printf("Entre o telefone > ");
+	printf("Entre o telefone => ");
 	fgets(temp.telefone, sizeof(temp.telefone), stdin);
-	
+
 	temp.apagar = false;
 	temp.comprou = false;
 	temp.entregue = false;
@@ -102,7 +102,7 @@ void FornecedorFuncoes::graveFornecedor() {
 	printf("\nCONFIRME OS DADOS\n");
 	temp.leiaFornecedor();
 
-	printf("\nEstao corretos? (1)Sim (2)Nao > ");
+	printf("\nEstao corretos? (1)Sim (2)Nao => ");
 	fgets(buffer, 2, stdin);
 	gravar = atoi(buffer);
 
@@ -123,7 +123,7 @@ void FornecedorFuncoes::graveFornecedor() {
 void FornecedorFuncoes::leiaFornecedores ()
 {
 	int conta;
-	
+
 	printf("EXIBIR TODOS OS FORNECEDORES\n\n");
 	if (!qteFornecedores)
 		printf("Nenhum fornecedor cadastrado!\n");
@@ -142,7 +142,7 @@ int FornecedorFuncoes::verificaCNPJ (char* cnpj) {
 	int conta;
 
 	resultado = -1;
-	
+
 	for (conta = 0; conta < qteFornecedores; conta++) {
 		if (strcmp(cnpj, fornece[conta].cnpj) == 0) {
 			resultado = conta;
@@ -157,18 +157,14 @@ int FornecedorFuncoes::buscaFornecedor ()
 	int numero;
 	int conta;
 	char cnpj[30];
-	
+
 	numero = -1;
-	
-	printf("Entre o CNPJ (incluindo pontos, barras e hifens) > ");
+
+	printf("Entre o CNPJ (incluindo pontos, barras e hifens) => ");
 	fgets(cnpj, sizeof(cnpj), stdin);
-		
-	for (conta = 0; conta < qteFornecedores; conta++)
-		if (strcmp(cnpj, fornece[conta].cnpj) == 0) {
-			numero = conta;
-//			printf("ID: %d\n", numero);
-			break;	
-		}
+
+	numero = verificaCNPJ(cnpj);
+
 	return numero;
 }
 
@@ -216,28 +212,28 @@ void FornecedorFuncoes::atualizaFornecedor (int numRegistro)
 		printf("\nCaso nao queira alterar um campo, aperte somente Enter.\n\n");
 	
 		printf("Endereco atual: %s", fornece[numRegistro].endereco);
-		printf("Entre o novo endereco > ");
+		printf("Entre o novo endereco => ");
 		fgets(temp.endereco, sizeof(temp.endereco), stdin);
 		
 		if (strlen(temp.endereco) == 1)
 			strcpy(temp.endereco, fornece[numRegistro].endereco);
 	
 		printf("Cidade atual: %s", fornece[numRegistro].cidade);
-		printf("Entre a nova cidade > ");
+		printf("Entre a nova cidade => ");
 		fgets(temp.cidade, sizeof(temp.cidade), stdin);
 		
 		if (strlen(temp.cidade) == 1)
 			strcpy(temp.cidade, fornece[numRegistro].cidade);
 	
 		printf("Estado atual: %s", fornece[numRegistro].estado);
-		printf("Entre o novo estado (2 letras) > ");
+		printf("Entre o novo estado (2 letras) => ");
 		fgets(temp.estado, sizeof(temp.estado), stdin);
 		
 		if (strlen(temp.estado) == 1)
 			strcpy(temp.estado, fornece[numRegistro].estado);
 	
 		printf("Telefone atual: %s", fornece[numRegistro].telefone);
-		printf("Entre o novo telefone > ");
+		printf("Entre o novo telefone => ");
 		fgets(temp.telefone, sizeof(temp.telefone), stdin);
 		
 		if (strlen(temp.telefone) == 1)
@@ -253,7 +249,7 @@ void FornecedorFuncoes::atualizaFornecedor (int numRegistro)
 		temp.leiaFornecedor();
 
 		do {
-			printf("\nEstao corretos? (1)Sim (2)Nao > ");
+			printf("\nEstao corretos? (1)Sim (2)Nao => ");
 			fgets(buffer, 2, stdin);
 			gravar = atoi(buffer);
 		} while (gravar != 1 && gravar != 2);
@@ -282,80 +278,169 @@ void FornecedorFuncoes::atualizaStatus (int numRegistro)
 	if (numRegistro >= 0 && !fornece[numRegistro].apagar)
 	{
 		printf("Fornecedor %s", fornece[numRegistro].nome);
-		
-		if (!fornece[numRegistro].comprou) {
+
+		if (!fornece[numRegistro].comprou)
+		{
 			printf("\nNada foi comprado deste fornecedor.\n");
-			
+
 			do {
-				printf("\nInserir data de compra e previsao de chegada? (1)Sim (2)Nao > ");
+				printf("\nInserir data de compra e previsao de chegada? (1)Sim (2)Nao => ");
 				fgets(buffer, sizeof(buffer), stdin);
 				op = atoi(buffer);
 			} while (op != 1 && op != 2);
+
+			if (op == 1)
+			{
+				printf("Data de compra:\n");
+				temp[0].grave();
+
+				fflush(stdin);
+				printf("\nData prevista de chegada:\n");
+				temp[1].grave();
+				fflush(stdin);
+
+				printf("\n\nCONFIRME OS DADOS\n");
+				printf("Data de compra: ");
+				temp[0].mostre();
+				printf("\nData prevista para chegada: ");
+				temp[1].mostre();
+				printf("\n\n");
+
+				do {
+					fflush(stdin);
+					printf("Dados estao corretos? (1)Sim (2)Nao => ");
+					fgets(buffer, sizeof(buffer), stdin);
+					grava = atoi(buffer);
+					fflush(stdin);
+				} while (grava != 1 && grava != 2);
+
+				if (grava == 1)
+				{
+					fornece[numRegistro].compra = temp[0];
+					fornece[numRegistro].previsao = temp[1];
+					fornece[numRegistro].comprou = true;
+					fornece[numRegistro].entregue = false;
+					printf("Status do fornecedor atulizados com sucesso!\n\n");
+				}
+				else if (grava == 2)
+					printf("Cancelando alteracoes...");
+			}
+
 		}
 		else
 		{
 			if (fornece[numRegistro].entregue)
 			{
-				printf("A compra efetuada no dia");
+				printf("A compra efetuada no dia ");
 				fornece[numRegistro].compra.mostre();
-				printf("chegou.\n");
+				printf(" ja chegou.\n");
+
+				do {
+					printf("Inserir nova data de compra e previsao de chegada? (1)Sim (2)Nao => ");
+					fgets(buffer, sizeof(buffer), stdin);
+					op = atoi(buffer);
+				} while (op != 1 && op != 2);
+
+				if (op == 1)
+				{
+					printf("Data de compra:\n");
+					temp[0].grave();
+
+					fflush(stdin);
+					printf("\nData prevista de chegada:\n");
+					temp[1].grave();
+					fflush(stdin);
+
+					printf("\n\nCONFIRME OS DADOS\n");
+					printf("Data de compra: ");
+					temp[0].mostre();
+					printf("\nData prevista para chegada: ");
+					temp[1].mostre();
+					printf("\n\n");
+
+					do {
+						fflush(stdin);
+						printf("Dados estao corretos? (1)Sim (2)Nao => ");
+						fgets(buffer, sizeof(buffer), stdin);
+						grava = atoi(buffer);
+						fflush(stdin);
+					} while (grava != 1 && grava != 2);
+
+					if (grava == 1)
+					{
+						fornece[numRegistro].compra = temp[0];
+						fornece[numRegistro].previsao = temp[1];
+						fornece[numRegistro].comprou = true;
+						fornece[numRegistro].entregue = false;
+						printf("Status do fornecedor atuliazados com sucesso!\n\n");
+					}
+					else if (grava == 2)
+						printf("Cancelando alteracoes...");
+				}
+
 			}
 			else
 			{
-				printf("Foi efetuada um compra em");
+				printf("Foi efetuada um compra em ");
 				fornece[numRegistro].compra.mostre();
-				printf(".\nA previsao de chegada esta para o dia");
+				printf(".\nA previsao de chegada esta para o dia ");
 				fornece[numRegistro].previsao.mostre();
 				printf(".\n");
-			}	
-			
-			do {
-				printf("Atualizar data de compra e previsao de chegada? (1)Sim (2)Nao > ");
-				fgets(buffer, sizeof(buffer), stdin);
-				op = atoi(buffer);
-			} while (op != 1 && op != 2);
-		}
-		
-		if (op == 1)
-		{
-			printf("Data de compra:\n");
-			temp[0].grave();
-			
-			fflush(stdin);
-			printf("\nData prevista de chegada:\n");
-			temp[1].grave();
-			fflush(stdin);
-			
-			printf("\n\nCONFIRME OS DADOS\n");
-			printf("Data de compra: ");
-			temp[0].mostre();
-			printf("\nData prevista para chegada: ");
-			temp[1].mostre();
-			printf("\n\n");
-			
-			do {
-				fflush(stdin);
-				printf("Dados estao corretos? (1)Sim (2)Nao > ");
-				fgets(buffer, sizeof(buffer), stdin);
-				grava = atoi(buffer);
-				fflush(stdin);
-			} while (grava != 1 && grava != 2);
-			
-			if (grava == 1)
-			{
-				fornece[numRegistro].compra = temp[0];
-				fornece[numRegistro].previsao = temp[1];
-				fornece[numRegistro].comprou = true;
-				fornece[numRegistro].entregue = false;
-				printf("Status do fornecedor atulizados com sucesso!\n\n");
-			}
-			else if (grava == 2)
-				printf("Cancelando alteracoes...");
-			
-		}
-		else if (op == 2)
-			printf("Cancelando alteracoes...\n\n");
 
+				do {
+					printf("Marcar o recebimento do produto? (1)Sim (2)Nao => ");
+					fgets(buffer, sizeof(buffer), stdin);
+					op = atoi(buffer);
+				} while (op != 1 && op != 2);
+
+				if (op == 1)
+				{
+					fornece[numRegistro].entrega = fornece[numRegistro].previsao;
+					fornece[numRegistro].entregue = true;
+					printf("Produto recebido com sucesso!\n\n");
+				}
+
+				do {
+					printf("Atualizar data de previsao de chegada? (1)Sim (2)Nao => ");
+					fgets(buffer, sizeof(buffer), stdin);
+					op = atoi(buffer);
+				} while (op != 1 && op != 2);
+
+				if (op == 1)
+				{
+					printf("\nData prevista de chegada:\n");
+					fflush(stdin);
+					temp[0].grave();
+					fflush(stdin);
+
+					printf("\n\nCONFIRME OS DADOS\n");
+					printf("Data de compra: ");
+					fornece[numRegistro].previsao.mostre();
+					printf("\nNova data prevista para chegada: ");
+					temp[0].mostre();
+					printf("\n\n");
+
+					do {
+						fflush(stdin);
+						printf("Dados estao corretos? (1)Sim (2)Nao => ");
+						fgets(buffer, sizeof(buffer), stdin);
+						grava = atoi(buffer);
+						fflush(stdin);
+					} while (grava != 1 && grava != 2);
+
+					if (grava == 1)
+					{
+						fornece[numRegistro].previsao = temp[0];
+						fornece[numRegistro].comprou = true;
+						fornece[numRegistro].entregue = false;
+						printf("Status do fornecedor atulizados com sucesso!\n\n");
+					}
+					else if (grava == 2)
+						printf("Cancelando alteracoes...\n\n");
+				}
+
+			}
+		}
 	}
 	else
 		printf("CNPJ invalido ou nao cadastrado\n\n");
@@ -371,7 +456,7 @@ void FornecedorFuncoes::apagarFornecedor (int numRegistro)
 		leiaFornecedorUnico(numRegistro);
 		
 		do {
-			printf("\n\nTem certeza que deseja apagar o fornecedor? (1)Nao (2)Sim > ");
+			printf("\n\nTem certeza que deseja apagar o fornecedor? (1)Nao (2)Sim => ");
 			fgets(buffer, 2, stdin);
 			apaga = atoi(buffer);
 		} while (apaga != 1 && apaga != 2);

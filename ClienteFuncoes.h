@@ -15,19 +15,21 @@ struct 	ClienteFuncoes{
 	Cliente c;
 	int *clientesNaMemoria;
 	int quantidadeDeClientes;
-	void mostrarClientes();   
+
+	void mostrarClientes();
+	void vizualizarCliente(); 
     void inserirCliente();
     void removerCliente();
     void pedidos();
     int achaCliente(char nome[100]);
-       int achaInsere(char nome[100]);
-       	int ClienteFuncoes::busca(Cliente *c,char clienteParaAchar[100],int inicio, int posicao);
+	int achaInsere(char nome[100]);
+	int busca(Cliente *c,char clienteParaAchar[100],int inicio, int posicao);
+
 	ClienteFuncoes();
 	~ClienteFuncoes();
-	void vizualizarCliente();
-    struct  Menus *menu;
+
+
 //	void menu();
 };   
-
 
 #endif /* CLIENTEFUNCOES_H_ */
