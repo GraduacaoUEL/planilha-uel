@@ -6,15 +6,12 @@
 // Description :
 //============================================================================
 #include "Cabecalhos.h"
-#include "Financeiro.h"
-
-struct Financeiro;
-struct Menus;
+#include "Menus.h"
 
 int main(int argc, char *argv[])
 {
-	Financeiro caixa; //O nome do parametro eh o que aparece no menu do modulo financeiro
 	struct Menus menu;
 
 	menu.principal();
+	return 0;
 }

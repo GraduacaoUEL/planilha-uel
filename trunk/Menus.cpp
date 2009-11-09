@@ -2,249 +2,222 @@
  * Menus.cpp
  *
  *  Created on: 01/11/2009
- *      Author: helioalb
+ *	  Author: helioalb
  */
+
+#include "Cabecalhos.h"
 #include "Menus.h"
-#include "Cliente.h"
 #include "ClienteFuncoes.h"
-#include "Financeiro.h"
-#include "Fornecedor.h"
+#include "FinanceiroFuncoes.h"
 #include "FornecedorFuncoes.h"
-#include "Produtos.h"
 #include "ProdutosFuncoes.h"
 
 void Menus::principal()
 {
-    int op;
+	int op;
 
-    do{
-            system("cls");
-            printf("--------------------SISTEMA DE CONTROLE DE RESTAURANTES--------------------\n\n\n\n");
-            printf("Digite a opcao correspondente ao modulo desejado e pressione Enter\n\n\n");
-            printf("( 1 ) Clientes\n");
-            printf("( 2 ) Financeiro\n");
-            printf("( 3 ) Fornecedores\n");
-            printf("( 4 ) Produtos\n");
-            printf("( 5 ) Sair\n");
-            printf("\nOpcao => ");
-            
-            scanf("%d", &op);
-    }while(op < 1 || op > 5);
+	do {
+		system("cls");
+		printf("------------------- SISTEMA DE CONTROLE DE RESTAURANTES -------------------\n\n\n\n");
+		printf("Digite a opcao correspondente ao modulo desejado e pressione Enter\n\n\n");
+		printf("( 1 ) Clientes\n");
+		printf("( 2 ) Financeiro\n");
+		printf("( 3 ) Fornecedores\n");
+		printf("( 4 ) Produtos\n");
+		printf("( 5 ) Sair\n");
 
-    switch(op)
-    {
-    case 1:
-            menuCliente();
-            break;
+		do {
+			fflush(stdin);
+			printf("\n\nSelecione a opcao desejada => ");
+			scanf("%d", &op);
+		} while (op < 1 || op > 5);
 
-    case 2:
-            menuFinanceiro();
-            break;
+		if (op == 1)
+			menuCliente();
+		else if (op == 2)
+			menuFinanceiro();
+		else if (op == 3)
+			menuFornecedores();
+		else if (op == 4)
+			menuProdutos();
 
-    case 3:
-            menuFornecedores();
-            break;
-
-    case 4:
-            menuProdutos();
-            break;
-
-
-    case 5:
-            exit(1);
-            break;
-
-
-    }
-
+	} while (op != 5);
 }
 
 void Menus::menuCliente()
 {
-   	ClienteFuncoes c;
+	ClienteFuncoes c;
 	int opcao;
-	do{
+
+	do {
 		system("cls");
-		printf("---------------------------CADASTRO DE CLIENTES---------------------------\n\n\n\n");
+		printf("-------------------------- CADASTRO DE CLIENTES --------------------------\n\n\n\n");
 		printf("Digite a opcao desejada e pressione Enter\n\n\n");
-        printf("( 1 ) Para inserir cliente\n");
-		printf("( 2 ) Para remover um cliente\n");
-		printf("( 3 ) Para inserir ou vizualizar os pedidos de um cliente\n");
-		printf("( 4 ) Para mostrar todos os clientes\n");
-		printf("( 5 ) Para visualizar um cliente\n");
-		printf("( 6 ) Para sair\n");	
-		printf("\nOpcao => ");
-		
-	
-		fflush(stdin);
-		scanf("%d",&opcao);
-		
-		if(opcao == 1)
+		printf("( 1 ) Inserir cliente\n");
+		printf("( 2 ) Remover um cliente\n");
+		printf("( 3 ) Inserir ou visualizar os pedidos de um cliente\n");
+		printf("( 4 ) Mostrar todos os clientes\n");
+		printf("( 5 ) Visualizar um cliente\n");
+		printf("( 6 ) Sair\n");
+
+		do {
+			printf("\n\nSelecione a opcao desejada => ");
+			fflush(stdin);
+			scanf("%d", &opcao);
+		} while (opcao < 1 || opcao > 6);
+
+		if (opcao == 1)
 			c.inserirCliente();
-		if(opcao == 2)
+		if (opcao == 2)
 			c.removerCliente();	
-		if(opcao == 3)
+		if (opcao == 3)
 			c.pedidos();
-		if(opcao == 4)
+		if (opcao == 4)
 			c.mostrarClientes();
-		if(opcao ==5)
+		if (opcao == 5)
 			c.vizualizarCliente();
-			
-	}while( opcao != 6);
-	c.menu->principal();
-     
+	} while (opcao != 6);
+
 }
 
 void Menus::menuFinanceiro()
 {
-
 	int op;
 	FinanceiroFuncoes f;
 
-	do{
+	do {
 		system("cls");
-		printf("------------------------MOVIMENTACOES FINANCEIRAS------------------------\n\n\n\n");
+		printf("----------------------- MOVIMENTACOES FINANCEIRAS -----------------------\n\n\n\n");
 		printf("Digite a opcao desejada e pressione Enter\n\n\n");
 		printf("( 1 ) Entrada\n");
 		printf("( 2 ) Saida\n");
 		printf("( 3 ) Historico de Entradas\n");
 		printf("( 4 ) Historico de Saidas\n");
 		printf("( 5 ) Voltar\n");
-		printf("\nOpcao => ");
 
-		scanf("%d", &op);
-	}while(op < 1 || op > 5);
+		do {
+			printf("\n\nSelecione a opcao desejada => ");
+			fflush(stdin);
+			scanf("%d", &op);
+		} while (op < 1 || op > 5);
 
-	switch(op)
-	{
-	case 1:
-		f.entrada();
-		break;
+		if (op == 1)
+			f.entrada();
+		if (op == 2)
+			f.saida();
+		if (op == 3)
+			f.historicoEntrada();
+		if (op == 4)
+			f.historicoSaida();
 
-	case 2:
-        f.saida();
-		break;
+	} while (op != 5);
 
-	case 3:
-		f.historicoEntrada();
-		break;
-		
-	case 4:
-		f.historicoSaida();
-		break;
-		
-
-	case 5:
-		f.menu->principal();
-		break;
-
-	}
 }
 
 void Menus::menuFornecedores()
 {
-   	FornecedorFuncoes teste;
-   	FornecedorFuncoes f;
+
+	FornecedorFuncoes teste;
 	char buffer[5];
 	int op;
 
-	fflush(stdin);
 	do {
 		system("cls");
-		printf("----------------------------CADASTRO DE FORNECEDORES----------------------------\n\n\n\n");
+		printf("----------------------- CADASTRO DE FORNECEDORES ------------------------\n\n\n\n");
 		printf("Digite a opcao desejada e pressione Enter\n\n\n");
-		printf(" ( 1 ) Registrar fornecedor\n");
-		printf(" ( 2 ) Mostrar todos os fornecedores\n");
-		printf(" ( 3 ) Mostrar um unico fornecedor\n");
-		printf(" ( 4 ) Atualizar dados de um fornecedor\n");
-		printf(" ( 5 ) Mostrar status de um fornecedor\n");
-		printf(" ( 6 ) Atualizar status de um fornecedor\n");
-		printf(" ( 7 ) Apagar fornecedor\n");
-		printf(" ( 8 ) Voltar ao menu principal\n");
-	
+
+		printf("( 1 ) Registrar fornecedor\n");
+		printf("( 2 ) Mostrar todos os fornecedores\n");
+		printf("( 3 ) Mostrar um unico fornecedor\n");
+		printf("( 4 ) Atualizar dados de um fornecedor\n");
+		printf("( 5 ) Mostrar status de um fornecedor\n");
+		printf("( 6 ) Atualizar status de um fornecedor\n");
+		printf("( 7 ) Apagar fornecedor\n");
+		printf("( 8 ) Voltar ao menu principal\n");
+
 		do {
-			printf("\n\nSelecione a opcao desejada > ");
+			printf("\n\nSelecione a opcao desejada => ");
+			fflush(stdin);
 			fgets(buffer, sizeof(buffer), stdin);
 			op = atoi(buffer);
-		} while (op < 1 && op > 7);
-	
-		system("cls");
+		} while (op < 1 || op > 8);
 
+		system("cls");
 		if (op == 1)
 		{
 			teste.graveFornecedor();
+			system("pause");
 		}
-
 		else if (op == 2)
 		{
 			teste.leiaFornecedores();
+			system("pause");
 		}
-
 		else if (op == 3)
 		{
 			printf("EXIBIR DADOS DE UM UNICO FORNECEDOR\n\n");
 			teste.leiaFornecedorUnico(teste.buscaFornecedor());
+			system("pause");
 		}
-		
+
 		else if (op == 4)
 		{
 			printf("ATUALIZAR DADOS DE UM FORNECEDOR\n\n");
 			teste.atualizaFornecedor(teste.buscaFornecedor());
+			system("pause");
 		}
-		
+
 		else if (op == 5)
 		{
 			printf("EXIBIR STATUS DE FORNECEDOR\n\n");
 			teste.mostreStatus(teste.buscaFornecedor());
+			system("pause");
 		}
 
 		else if (op == 6)
 		{
 			printf("ATUALIZAR STATUS DE UM FORNECEDOR\n\n");
 			teste.atualizaStatus(teste.buscaFornecedor());
+			system("pause");
 		}
 
 		else if (op == 7)
-		{	
+		{
 			printf("APAGAR FORNECEDOR\n\n");
 			teste.apagarFornecedor(teste.buscaFornecedor());
+			system("pause");
 		}
 
-		else if (op == 8)
-		{	
-			f.menu->principal();
-		}
-		
-	} while (op > 1 && op < 8);
-	system("pause");
+	} while (op != 8);
+
 }
 
 void Menus::menuProdutos()
 {
-   	ProdutosFuncoes p;
+	ProdutosFuncoes p;
 	int opcao;
-	do{
+
+	do {
 		system("cls");
-		printf("----------------------------CADASTRO DE PRODUTOS----------------------------\n\n\n\n");
+		printf("--------------------------- CADASTRO DE PRODUTOS ---------------------------\n\n\n\n");
 		printf("Digite a opcao desejada e pressione Enter\n\n\n");
 		printf("( 1 ) Para inserir produto\n");
 		printf("( 2 ) Para remover um produto\n");
 		printf("( 3 ) Para mostrar todos os produtos\n");
-        printf("( 4 ) Para sair\n");
-		printf("\nOpcao => ");
-	
-		fflush(stdin);
-		scanf("%d",&opcao);
-		
-		if(opcao == 1)
-			p.inserirProduto();
-		if(opcao == 2)
-			p.removerProduto();
-		if(opcao == 3)
-			p.mostrarProduto();
-			
+		printf("( 4 ) Para sair\n");
 
-	}while( opcao != 4);
-	p.menu->principal();
-     
+		do {
+			printf("\n\nSelecione a opcao desejada => ");
+			fflush(stdin);
+			scanf("%d", &opcao);
+		} while (opcao < 1 || opcao > 4);
+
+		if (opcao == 1)
+			p.inserirProduto();
+		if (opcao == 2)
+			p.removerProduto();
+		if (opcao == 3)
+			p.mostrarProduto();
+
+	} while (opcao != 4);
 }
